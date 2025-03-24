@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastBox - Reporte de Pérdida</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            <li class="dropdown">
+                <a href="envio.html" class="dropbtn">Envío</a>
+                <div class="dropdown-content">
+                    <a href="rastreo.html">Rastreo</a>
+                    <a href="tarifas.html">Tarifas</a>
+                    <a href="rutas.html">Rutas</a>       
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="soporte.html" class="dropbtn">Soporte</a>
+                <div class="dropdown-content">
+                    <a href="reporte-perdida.html">Reporte de Pérdida</a>
+                    <a href="faq.html">Preguntas Frecuentes</a>
+                </div>
+            </li>
+            <li><a href="login.html" class="modal-btn">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Reporte de Pérdida</h1>
+    </header>
+    <p>Si tu paquete no ha llegado o crees que se ha perdido, por favor repórtalo aquí. Nuestro equipo de soporte investigará tu caso.</p>
+    
+    <section>
+        <h2>Detalles del Paquete</h2>
+        <form action="submit-perdida.php" method="POST">
+            <label for="rastreo">Número de Rastreo:</label>
+            <input type="text" id="rastreo" name="rastreo" placeholder="Número de rastreo" required><br><br>
+    
+            <label for="nombre">Tu Nombre:</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required><br><br>
+    
+            <label for="email">Correo Electrónico:</label>
+            <input type="email" id="email" name="email" placeholder="Tu correo" required><br><br>
+    
+            <label for="descripcion">Descripción del Problema:</label><br>
+            <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Describe el problema aquí" required></textarea><br><br>
+    
+            <button type="submit">Reportar Pérdida</button>
+        </form>
+    </section>
+    
+</body>
+</html>
