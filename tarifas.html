@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastBox - Tarifas</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="inicio.html">Inicio</a></li>
+            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
+            <li class="dropdown">
+                <a href="envio.html" class="dropbtn">Envío</a>
+                <div class="dropdown-content">
+                    <a href="rastreo.html">Rastreo</a>
+                    <a href="tarifas.html">Tarifas</a>
+                    <a href="rutas.html">Rutas</a>       
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="soporte.html" class="dropbtn">Soporte</a>
+                <div class="dropdown-content">
+                    <a href="reporte-perdida.html">Reporte de Pérdida</a>
+                    <a href="faq.html">Preguntas Frecuentes</a>
+                </div>
+            </li>
+            <li><a href="login.html" class="modal-btn">Iniciar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Tarifas de Envío</h1>
+        <p>Consulta nuestras tarifas para envíos nacionales e internacionales.</p>
+    </header>
+
+    <section>
+        <h2>Calculadora de Tarifas</h2>
+        <form action="#" method="POST">
+            <label for="origen">Origen:</label>
+            <input type="text" id="origen" name="origen" required>
+
+            <label for="destino">Destino:</label>
+            <input type="text" id="destino" name="destino" required>
+
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" name="peso" step="0.01" required>
+
+            <button type="submit">Calcular</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Tarifas Estándar</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Tiempo de Entrega</th>
+                    <th>Tarifa Base</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Envío Nacional Exprés</td>
+                    <td>24 - 48 horas</td>
+                    <td>Desde $10.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Nacional Económico</td>
+                    <td>3 - 5 días</td>
+                    <td>Desde $7.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Internacional Prioritario</td>
+                    <td>2 - 5 días</td>
+                    <td>Desde $25.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Internacional Económico</td>
+                    <td>5 - 10 días</td>
+                    <td>Desde $20.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+</html>
