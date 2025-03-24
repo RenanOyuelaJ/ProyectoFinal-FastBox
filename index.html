@@ -3,27 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FastBox - Inicio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>FastBox - Rastreo</title>
 </head>
 <body>
-
     <nav>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="inicio.html">Inicio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            <li><a href="envio.html">Envío</a></li>
-            <li><a href="soporte.html">Soporte</a></li>
-            <li><a href="#" onclick="document.getElementById('login-modal').style.display='block'">Iniciar Sesión</a></li>
+            <li class="dropdown">
+                <a href="envio.html" class="dropbtn">Envío</a>
+                <div class="dropdown-content">
+                    <a href="rastreo.html">Rastreo</a>
+                    <a href="tarifas.html">Tarifas</a>
+                    <a href="rutas.html">Rutas</a>       
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="soporte.html" class="dropbtn">Soporte</a>
+                <div class="dropdown-content">
+                    <a href="reporte-perdida.html">Reporte de Pérdida</a>
+                    <a href="faq.html">Preguntas Frecuentes</a>
+                </div>
+            </li>
+            <li><a href="login.html" class="modal-btn">Iniciar Sesión</a></li>
         </ul>
     </nav>
-    <div>
-        <header>
-            <h1>Bienvenido a FastBox</h1>
-            <p>Tu mejor opción en soluciones de envíos nacionales e internacionales.</p>
-            <img src="fastbox-banner.jpg" alt="FastBox Envíos Seguros" class="img-size">
-        </header>
-    </div>    
+
+    <header>
+        <h1>Bienvenido a FastBox</h1>
+        <p>Tu mejor opción en soluciones de envíos nacionales e internacionales.</p>
+        <img src="fastbox-banner.jpg" alt="FastBox Envíos Seguros" class="img-size">
+    </header>
+
     <section>
         <h2>Soluciones de Envío Rápidas y Seguras</h2>
         <p>FastBox ofrece servicios de paquetería con entrega confiable, rastreo en tiempo real y cobertura global.</p>
@@ -47,53 +58,6 @@
         </ul>
     </section>
 
-    <section>
-        <h2>Tarifas de Último Minuto</h2>
-        <p>Aprovecha nuestras tarifas especiales en envíos urgentes. Consulta nuestras opciones y elige la mejor tarifa para tu paquete.</p>
-        
-        <table border="1" width="100%">
-            <tr>
-                <th>Destino</th>
-                <th>Entrega Estimada</th>
-                <th>Tarifa Especial</th>
-            </tr>
-            <tr>
-                <td>Nacional</td>
-                <td>24 horas</td>
-                <td>$9.99</td>
-            </tr>
-            <tr>
-                <td>América Latina</td>
-                <td>2-3 días</td>
-                <td>$19.99</td>
-            </tr>
-            <tr>
-                <td>EE.UU. y Canadá</td>
-                <td>2-4 días</td>
-                <td>$24.99</td>
-            </tr>
-            <tr>
-                <td>Europa</td>
-                <td>3-5 días</td>
-                <td>$29.99</td>
-            </tr>
-            <tr>
-                <td>Asia</td>
-                <td>4-6 días</td>
-                <td>$39.99</td>
-            </tr>
-        </table>
-    </section>
-
-    <section>
-        <h2>Cómo funciona</h2>
-        <ol>
-            <li><strong>Ingresa los detalles de tu envío:</strong> Completa el formulario en línea.</li>
-            <li><strong>Recibe una cotización:</strong> Verifica las tarifas especiales disponibles.</li>
-            <li><strong>Elige y confirma:</strong> Selecciona la mejor opción y realiza el pago.</li>
-            <li><strong>Envía tu paquete:</strong> Programa la recolección o acude a un punto de envío.</li>
-        </ol>
-    </section>
-
+    
 </body>
 </html>
