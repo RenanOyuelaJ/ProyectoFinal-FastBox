@@ -10,13 +10,26 @@
 
     <nav>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="inicio.html">Inicio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            <li><a href="envio.html">Envío</a></li>
-            <li><a href="soporte.html">Soporte</a></li>
+            <li class="dropdown">
+                <a href="envio.html" class="dropbtn">Envío</a>
+                <div class="dropdown-content">
+                    <a href="rastreo.html">Rastreo</a>
+                    <a href="tarifas.html">Tarifas</a>
+                    <a href="rutas.html">Rutas</a>       
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="soporte.html" class="dropbtn">Soporte</a>
+                <div class="dropdown-content">
+                    <a href="reporte-perdida.html">Reporte de Pérdida</a>
+                    <a href="faq.html">Preguntas Frecuentes</a>
+                </div>
+            </li>
+            <li><a href="login.html" class="modal-btn">Iniciar Sesión</a></li>
         </ul>
     </nav>
-
     <header>
         <h1>Quiénes Somos</h1>
         <img src="empresa.jpg" alt="Centro de operaciones FastBox" class="img-size">
