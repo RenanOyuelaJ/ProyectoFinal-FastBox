@@ -10,33 +10,49 @@
 
     <nav>
         <ul>
-            <li><a href="index.html">Inicio</a></li>
+            <li><a href="inicio.html">Inicio</a></li>
             <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            <li><a href="envio.html">Envío</a></li>
-            <li><a href="soporte.html">Soporte</a></li>
+            <li class="dropdown">
+                <a href="envio.html" class="dropbtn">Envío</a>
+                <div class="dropdown-content">
+                    <a href="rastreo.html">Rastreo</a>
+                    <a href="tarifas.html">Tarifas</a>
+                    <a href="rutas.html">Rutas</a>       
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="soporte.html" class="dropbtn">Soporte</a>
+                <div class="dropdown-content">
+                    <a href="reporte-perdida.html">Reporte de Pérdida</a>
+                    <a href="faq.html">Preguntas Frecuentes</a>
+                </div>
+            </li>
+            <li><a href="login.html" class="modal-btn">Iniciar Sesión</a></li>
         </ul>
     </nav>
 
     <header>
         <h1>Envíos con FastBox</h1>
-        <img src="envio.jpg" alt=" " class="img-size">
+        <img src="envio.jpg" alt="Envíos con FastBox" class="img-size">
     </header>
 
     <section>
-        <h2>Rastrea tu Paquete</h2>
-        <p>Ingresa tu número de seguimiento para conocer el estado de tu envío.</p>
-        <input type="text" placeholder="Número de Seguimiento">
-        <button>Rastrear</button>
-    </section>
-
-    <section>
-        <h2>Opciones de Envío</h2>
+        <h2>Cómo Funciona Nuestro Servicio</h2>
+        <p>FastBox ofrece soluciones de envío confiables para empresas y particulares. Desde envíos nacionales hasta envíos internacionales, garantizamos rapidez y seguridad.</p>
         <ul>
-            <li>Entrega estándar (3-5 días hábiles)</li>
-            <li>Entrega exprés (24-48 horas)</li>
-            <li>Logística empresarial</li>
+            <li><strong>Solicita tu envío:</strong> Registra tu paquete en línea o en nuestras oficinas.</li>
+            <li><strong>Empaque seguro:</strong> Usa materiales de embalaje adecuados para proteger tu envío.</li>
+            <li><strong>Entrega garantizada:</strong> Recibe actualizaciones de tu paquete hasta su destino.</li>
         </ul>
     </section>
 
+    <section>
+        <h2>Beneficios de Enviar con Nosotros</h2>
+        <ul>
+            <li>Amplia red de cobertura nacional e internacional.</li>
+            <li>Precios competitivos y opciones de envío personalizadas.</li>
+            <li>Seguro de envío para mayor tranquilidad.</li>
+        </ul>
+    </section>
 </body>
 </html>
