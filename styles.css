@@ -6,3 +6,34 @@
 }
 
 /*prueba comentario */
+
+.container-fluid{
+    background-color:#051e54;
+}
+
+.bg-body-tertiary {
+    background-color: #333 !important; 
+}
+
+/* Texto en blanco */
+.navbar .nav-link,
+.navbar .navbar-brand {
+    color: white !important;
+}
+
+/* Hover en enlaces */
+.navbar .nav-link:hover {
+    color: #2ac3fd !important;
+}
+
+/* Centrar el menú */
+.navbar-nav {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.navbar-toggler-icon{
+    color: white;
+}
