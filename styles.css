@@ -37,3 +37,7 @@
 .navbar-toggler-icon{
     color: white;
 }
+
+.col{
+    border: #051e54 1px solid;
+}
