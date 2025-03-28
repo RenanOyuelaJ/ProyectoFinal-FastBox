@@ -12,15 +12,15 @@
     padding: 1%;
 }
 
-/* .bg-body-tertiary {
-    background-color: #333; 
-    margin-top: auto;
-}  */
-
+.navbar .navbar-brand:hover{
+    color: white;
+}
 /* Texto en blanco */
 .navbar .navbar-brand {
     color: white;
+    font-size: 2rem;
 }
+
 
 /* Hover en enlaces */
 .navbar .nav-link:hover {
@@ -53,4 +53,17 @@ body{
 .footer:hover{
     font-weight: bold;
     text-decoration: underline;
+}
+/* Card de Index */
+.image-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-section img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
 }

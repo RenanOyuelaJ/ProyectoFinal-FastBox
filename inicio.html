@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <link rel="icon" href="/assets/media/FASTBOX13.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastBox - Inicio</title>
@@ -12,9 +13,11 @@
     <div class="container-fluid">
         
         <a class="navbar-brand" href="inicio.html">
-            <img src="/assets/media/FASTBOX13.ico" alt="FastBox" width="30">
+            <img src="/assets/media/FASTBOX13.ico" alt="FastBox" width="57" height="59.94">
         </a>
-        <a class="navbar-brand" href="#">FastBox</a>
+        <a class="navbar-brand" href="inicio.html" style="
+        padding-top: 2px;
+        padding-bottom: 2px;">FastBox</a>
             
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"> 
             <span class="navbar-toggler-icon"></span>
@@ -50,9 +53,39 @@
                     </ul>
                 </li>
             </ul>
+            <button class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#loginModal">
+                <a class="bi bi-person-circle" ><img src="" alt="Iniciar Sesion"></a>
+            </button>
         </div>
+        
     </div>
 </nav>
+
+<!-- Modal de Inicio de Sesión -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Iniciar Sesión</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 </head>
 <body style="background-color: rgb(247, 247, 247);">
     <center><img src="/assets/media/man 16-10 with blue blur.jpg" alt="FastBox Envíos Seguros" width="1500rem" style="margin-top: 1.8rem;"></center>
@@ -91,8 +124,34 @@
         </div>
         </div>
     </div>
-    <div class="main-container">
-        <h2></h2>
+
+    <div class="main-container row">
+
+        <div class="container mt-5">
+            <div class="row align-items-center">
+                <!-- Sección de texto -->
+                <div class="col-md-6">
+                    <div class="p-4 border rounded bg-light">
+                        <h2 class="fw-bold">Envío de Documentos y Paquetes</h2>
+                        <p>Para todos los usuarios</p>
+                        <p>Obtenga más información acerca de DHL Express, el indiscutible líder mundial en envíos internacionales express.</p>
+                        <h5 class="fw-bold">Servicios disponibles</h5>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-truck"></i> El siguiente día hábil posible</li>
+                            <li><i class="bi bi-globe"></i> Opciones flexibles de importación y exportación</li>
+                            <li><i class="bi bi-briefcase"></i> Soluciones comerciales personalizadas</li>
+                            <li><i class="bi bi-box"></i> Una amplia variedad de servicios opcionales</li>
+                        </ul>
+                        <a href="rastreo.html" class="btn btn-primary">Rastrea tu Pedido</a>
+                    </div>
+                </div>
+                <!-- Imagen -->
+                <div class="col-md-6">
+                    <img src="/assets/media/Postal package mockup.png" alt="Entrega de paquete DHL" class="img-fluid rounded">
+                </div>
+            </div>
+        </div>    
+
     </div>
     
 </body>
