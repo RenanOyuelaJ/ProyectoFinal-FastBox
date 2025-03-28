@@ -5,31 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FastBox - Envío</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="assets/js/bootstrap.bundle.min.js"></script>   
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
+        <div class="container-fluid">
+            
+            <a class="navbar-brand" href="inicio.html">
+                <img src="/assets/media/FASTBOX13.ico" alt="FastBox" width="30">
+            </a>
+            <a class="navbar-brand" href="#">FastBox</a>
+                
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" style="justify-content: center;" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: white;" aria-current="page" href="inicio.html">Inicio</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: white;" aria-current="page" href="quienes-somos.html">Quienes Somos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Envío
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="rastreo.html">Rastrea tu paquete</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tarifas.html">Tarifas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="rutas.html">Rutas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Soporte
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="reporte-perdida.html">Reporte de Pérdida</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="faq.html">Preguntas Frecuentes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </head>
 <body>
-
-    <nav>
-        <ul>
-            <li><a href="inicio.html">Inicio</a></li>
-            <li><a href="quienes-somos.html">Quiénes Somos</a></li>
-            <li class="dropdown">
-                <a href="envio.html" class="dropbtn">Envío</a>
-                <div class="dropdown-content">
-                    <a href="rastreo.html">Rastreo</a>
-                    <a href="tarifas.html">Tarifas</a>
-                    <a href="rutas.html">Rutas</a>       
-                </div>
-            </li>
-            <li class="dropdown">
-                <a href="soporte.html" class="dropbtn">Soporte</a>
-                <div class="dropdown-content">
-                    <a href="reporte-perdida.html">Reporte de Pérdida</a>
-                    <a href="faq.html">Preguntas Frecuentes</a>
-                </div>
-            </li>
-            <li><a href="login.html" class="modal-btn">Iniciar Sesión</a></li>
-        </ul>
-    </nav>
 
     <header>
         <h1>Envíos con FastBox</h1>

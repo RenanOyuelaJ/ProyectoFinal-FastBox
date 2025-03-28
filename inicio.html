@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
     <div class="container-fluid">
         
         <a class="navbar-brand" href="inicio.html">
@@ -17,16 +17,18 @@
         <a class="navbar-brand" href="#">FastBox</a>
             
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"> 
-            <span class="navbar-toggler-icon bs-light-border-subtle"></span>
+            <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-            <ul class="navbar-nav">
+        <div class="collapse navbar-collapse" style="justify-content: center;" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="quienes-somos.html">Quienes Somos</a>
+                    <a class="nav-link active" style="color: white;" aria-current="page" href="inicio.html">Inicio</a>
+                <li class="nav-item">
+                    <a class="nav-link active" style="color: white;" aria-current="page" href="quienes-somos.html">Quienes Somos</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Envío
                     </a>
                     <ul class="dropdown-menu">
@@ -38,7 +40,7 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Soporte
                     </a>
                     <ul class="dropdown-menu">
@@ -52,8 +54,8 @@
     </div>
 </nav>
 </head>
-<body style="background-color: rgb(225, 225, 225);">
-    <center><img src="/assets/media/man 16-10 with blue blur.jpg" alt="FastBox Envíos Seguros" width="1500rem" style="margin-top: 4%;"></center>
+<body style="background-color: rgb(247, 247, 247);">
+    <center><img src="/assets/media/man 16-10 with blue blur.jpg" alt="FastBox Envíos Seguros" width="1500rem" style="margin-top: 1.8rem;"></center>
        
     <div class="main-container" style="background-color:#051e54; color: white;">
             <h1><center>Bienvenido a FastBox</center></h1>
@@ -94,23 +96,33 @@
     </div>
     
 </body>
-
-<footer style="background-color: #051e54;">
-    <div class="row">
-    <center style="color: white;">  Copyrigth &copy; 2025 FastBox </center>
+ 
+<footer style="background-color: rgb(225, 225, 225)">
+    <div class="row" style="padding: 2%; margin: 1%; margin-bottom: 0;">
+        <div class="col-2"><img src="/assets/media/FASTBOX3.png" alt="FastBox" width="200rem" ></div>
         <div class="col-8">
-
-        </div>
-        <div class="col-2" style="color: white;">
-            <h7>Síguenos</h7>
-            <br>
-            <ul>
-                <img src="" alt="Instagram">
-                <img src="" alt="Facebook">
-                <img src="" alt="LinkedIN">
-                <img src="" alt="Whatsapp">
+            <ul class="row align-items-start" style="list-style: none;"> 
+                <li class="col footer">Conocimiento Sobre Fraudes</li>
+                <li class="col footer">Aviso Legal</li>
+                <li class="col footer">Condiciones de Uso</li>
+                <li class="col footer">Aviso de Privacidad</li>
+                <br>
+                <li class="col footer">Resolución de Disputas</li>
+                <li class="col footer">Información Adicional</li>
+                <li class="col footer">Ajustes de Cookies</li>
             </ul>
         </div>
+        <div class="col-2">
+            <h7><center>Síganos:</center></h7>
+            <br>
+            <ul style="padding: 0;"><center>
+                <img src="/assets/icons/instagram.png" alt="Instagram">
+                <img src="/assets/icons/facebook.png" alt="Facebook">
+                <img src="/assets/icons/linkedin.png" alt="LinkedIN">
+                <img src="/assets/icons/whatsapp.png" alt="Whatsapp"></center>
+            </ul>
+        </div>
+        <center>  2025 &copy; todos los derechos reservados </center>
     </div>
 </footer>
 </html>
