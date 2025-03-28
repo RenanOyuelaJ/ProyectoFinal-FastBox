@@ -67,3 +67,7 @@ body{
     height: auto;
     border-radius: 10px;
 }
+
+.btn .btn-outline-light:hover{
+    background-color: black;
+}
