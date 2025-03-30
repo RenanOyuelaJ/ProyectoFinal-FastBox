@@ -36,6 +36,15 @@
     padding: 0;
 }
 
+.container-fluid {
+    position: fixed; /* Hace que el menú sea estático */
+    top: 0; /* Fija el menú en la parte superior */
+    left: 0;
+    width: 100%; /* Ocupa todo el ancho de la página */
+    color: white;
+    padding: 10px 20px;
+    z-index: 1000;
+}
 
 body{
     background-color: #333;
