@@ -77,6 +77,6 @@ body{
     border-radius: 10px;
 }
 
-.btn .btn-outline-light:hover{
+.btn:hover {
     background-color: black;
 }
