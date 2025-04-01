@@ -1,5 +1,4 @@
 <?php
-// fedex.php
 
 // Datos de autenticación
 $client_id = "l7449b0fc299e84c87b6e05ad0a7203255";
@@ -20,7 +19,7 @@ $headers = [
 // Configurar los datos del formulario para obtener el token
 $data = [
     'grant_type' => 'client_credentials',
-    'scope' => 'tracking'  // Usamos el scope relacionado con el seguimiento
+    'scope' => 'tracking'
 ];
 
 // Iniciar cURL
@@ -65,11 +64,10 @@ if (!$access_token) {
     exit;
 }
 
-// Ahora que tenemos el token, hacer la solicitud para el seguimiento
-// URL de la API para obtener el estado de un paquete
+// Solicitud de seguimiento utilizando el token obtenido
 $tracking_url = "https://apis-sandbox.fedex.com/track/v1/trackingnumbers";
 
-// Datos de la solicitud de seguimiento
+// Payload de seguimiento (puedes modificar el número de seguimiento según lo necesites)
 $tracking_payload = [
     "includeDetailedScans" => true,
     "trackingInfo" => [
@@ -77,7 +75,7 @@ $tracking_payload = [
             "shipDateBegin" => "2020-03-29",
             "shipDateEnd" => "2020-04-01",
             "trackingNumberInfo" => [
-                "trackingNumber" => "123456789012" // Aquí pones el número de seguimiento que deseas rastrear
+                "trackingNumber" => "123456789012" // Aquí pon el número de seguimiento real
             ]
         ]
     ]
@@ -86,10 +84,11 @@ $tracking_payload = [
 // Configurar los encabezados para la solicitud de seguimiento
 $tracking_headers = [
     "Content-Type: application/json",
-    "Authorization: Bearer $access_token"
+    "Authorization: Bearer $access_token",
+    "X-locale: en_US"
 ];
 
-// Iniciar cURL nuevamente para la solicitud de seguimiento
+// Iniciar cURL para la solicitud de seguimiento
 $ch_tracking = curl_init();
 
 // Configurar cURL para la solicitud de seguimiento
