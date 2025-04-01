@@ -66,9 +66,11 @@
         
         <section>
             <p>Ingresa tu número de rastreo para conocer la ubicación de tu paquete en tiempo real.</p>
-            <input type="text" id="trackingNumber" placeholder="Ingrese el número de rastreo">
+            <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Ingrese el número de rastreo">
             <button onclick="trackPackage()">Rastrear</button>
-            <div id="result"></div>
+            
+            <!-- Contenedor para mostrar los resultados -->
+            <div id="trackingResult"></div>
         </section>
         
         <section>
