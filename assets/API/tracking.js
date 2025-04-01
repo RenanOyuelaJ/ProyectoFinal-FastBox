@@ -15,6 +15,10 @@ function trackPackage() {
   fetch(fedexUrl + '?trackingNumber=' + trackingNumber)
     .then(response => response.json())
     .then(data => {
+
+    // Verificamos qué contiene la respuesta antes de intentar mostrarla
+      console.log("Respuesta de la API:", data); // Ver contenido de la respuesta
+
       // Llamamos a la función para mostrar los resultados del seguimiento
       displayTrackingInfo(data);
     })
