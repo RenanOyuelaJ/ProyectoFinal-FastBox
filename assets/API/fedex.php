@@ -34,7 +34,8 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
     }
 
     // Imprimir la respuesta completa para depuración
-    echo json_encode(["response" => $authResponse]);
+    echo json_encode(["raw_response" => $authResponse]);
+    exit();
 
     // Intenta analizar la respuesta solo si es JSON válido
     $authResponseData = json_decode($authResponse, true);
