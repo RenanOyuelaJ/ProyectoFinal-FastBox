@@ -1,4 +1,15 @@
 <?php
+// Habilitar CORS para permitir solicitudes desde cualquier origen
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Manejo de preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+    http_response_code(200);
+    exit();
+}
+
 // Parámetros necesarios para la solicitud
 $client_id = "l7449b0fc299e84c87b6e05ad0a7203255"; // Reemplaza con tu client_id
 $client_secret = "b2bf9b99deb645e888e5c9c6e0d66657"; // Reemplaza con tu client_secret
