@@ -26,16 +26,15 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
     curl_setopt_array($curl, $options);
     $authResponse = curl_exec($curl);
 
-    // Verifica si hubo un error en la solicitud
+    // Verifica si hubo un error en la solicitud de cURL
     if ($authResponse === false) {
-        echo json_encode(["error" => "Error en la solicitud de token: " . curl_error($curl)]);
+        echo json_encode(["error" => "Error de cURL: " . curl_error($curl)]);
         curl_close($curl);
         exit;
     }
 
-    // Imprimir la respuesta completa para depuración
-    echo json_encode(["raw_response" => $authResponse]);
-    exit();
+    // Depurar la respuesta de la API
+    var_dump($authResponse);
 
     // Intenta analizar la respuesta solo si es JSON válido
     $authResponseData = json_decode($authResponse, true);
