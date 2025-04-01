@@ -67,7 +67,7 @@
         <section>
             <p>Ingresa tu número de rastreo para conocer la ubicación de tu paquete en tiempo real.</p>
             <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Ingrese el número de rastreo">
-            <button onclick="trackPackage()">Rastrear</button>
+            <button class="btn btn-secondary" onclick="trackPackage()">Rastrear</button>
             
             <!-- Contenedor para mostrar los resultados -->
             <div id="response"></div>
@@ -81,6 +81,7 @@
                 <li><strong>En tránsito:</strong> Tu paquete está en camino a su destino.</li>
                 <li><strong>En entrega:</strong> El paquete está siendo entregado.</li>
                 <li><strong>Entregado:</strong> El destinatario ha recibido el paquete.</li>
+                <li><strong>No disponible:</strong> Estamos trabajando junto a nuestros partners para darte el último estado de tu paquete.</li>
             </ul>
         </section>
         
