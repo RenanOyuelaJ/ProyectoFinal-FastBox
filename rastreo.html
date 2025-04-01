@@ -7,8 +7,9 @@
     <title>FastBox - Rastrea tu Paquete</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/API/tracking.js"></script>
+</head>
 <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
     <div class="container-fluid">
         
@@ -56,7 +57,7 @@
         </div>
     </div>
 </nav>
-</head>
+
 <body>
 
        <header>
@@ -65,8 +66,9 @@
         
         <section>
             <p>Ingresa tu número de rastreo para conocer la ubicación de tu paquete en tiempo real.</p>
-            <input type="text" placeholder="Número de rastreo">
-            <button>Rastrear</button>
+            <input type="text" id="trackingInput" placeholder="Ingresa tu número de guía">
+            <button onclick="buscarTracking()">Rastrear</button>
+            <p id="resultado"></p>
         </section>
         
         <section>
