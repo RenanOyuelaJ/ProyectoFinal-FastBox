@@ -18,16 +18,11 @@ if (empty($trackingNumber)) {
     exit;
 }
 
-// Aquí continúa el código para hacer la solicitud a la API de FedEx con el número de rastreo
-echo "Número de rastreo recibido: " . $trackingNumber;
-
-// Verificar si se envió un número de rastreo
-if (!isset($_POST['tracking_number'])) {
-    echo json_encode(["error" => "No se proporcionó un número de rastreo"]);
-    exit();
+// Verificamos si el número de rastreo es válido (puedes agregar más validaciones si es necesario)
+if (!preg_match('/^\d{12}$/', $trackingNumber)) {
+    echo json_encode(['error' => 'Número de rastreo no válido']);
+    exit;
 }
-
-$tracking_number = $_POST['tracking_number'];
 
 // Parámetros de autenticación
 $client_id = "l7449b0fc299e84c87b6e05ad0a7203255";
@@ -49,9 +44,16 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($auth_data));
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
 
 $auth_response = curl_exec($ch);
+
+// Verificar si hubo error en la autenticación
+if (curl_errno($ch)) {
+    echo json_encode(["error" => "Error al obtener el token: " . curl_error($ch)]);
+    exit();
+}
+
 curl_close($ch);
 
-// Decodificar el token
+// Decodificar la respuesta de autenticación
 $auth_response_data = json_decode($auth_response, true);
 if (!isset($auth_response_data['access_token'])) {
     echo json_encode(["error" => "No se pudo obtener el token"]);
@@ -66,7 +68,7 @@ $tracking_data = [
     "trackingInfo" => [
         [
             "trackingNumberInfo" => [
-                "trackingNumber" => $tracking_number
+                "trackingNumber" => $trackingNumber
             ]
         ]
     ],
@@ -84,6 +86,13 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 ]);
 
 $tracking_response = curl_exec($ch);
+
+// Verificar si hubo error en la solicitud de rastreo
+if (curl_errno($ch)) {
+    echo json_encode(["error" => "Error en la solicitud de rastreo: " . curl_error($ch)]);
+    exit();
+}
+
 curl_close($ch);
 
 // Devolver la respuesta de FedEx
