@@ -24,16 +24,24 @@ async function trackPackage() {
         if (data.output && data.output.completeTrackResults && data.output.completeTrackResults.length > 0) {
             const trackResults = data.output.completeTrackResults[0].trackResults[0];
 
-            // Extraer información importante
+            // Extraer información clave
             const trackingNumber = trackResults.trackingNumber;
             const status = trackResults.statusDescription || "Estado no disponible";
+            const latestEvent = trackResults.scanEvents ? trackResults.scanEvents[0] : null;
+            const eventDescription = latestEvent ? latestEvent.eventDescription : "No hay eventos recientes";
 
             // Crear un contenido HTML dinámico para mostrar los resultados
             const resultsHTML = `
                 <h3>Resultados de Rastreo para ${trackingNumber}</h3>
                 <p><strong>Estado: </strong>${status}</p>
-                <p><strong>Detalles adicionales:</strong></p>
-                <pre>${JSON.stringify(trackResults, null, 2)}</pre>
+                <p><strong>Último evento: </strong>${eventDescription}</p>
+                <p><strong>Ubicación del evento: </strong>${latestEvent ? latestEvent.scanLocation.city + ", " + latestEvent.scanLocation.stateOrProvinceCode : "No disponible"}</p>
+                <p><strong>Detalles del paquete:</strong></p>
+                <ul>
+                    <li><strong>Tipo de embalaje:</strong> ${trackResults.packageDetails.packagingDescription.description}</li>
+                    <li><strong>Peso:</strong> ${trackResults.packageDetails.weightAndDimensions.weight[0].value} ${trackResults.packageDetails.weightAndDimensions.weight[0].unit}</li>
+                    <li><strong>Dimensiones:</strong> ${trackResults.packageDetails.weightAndDimensions.dimensions[0].length}x${trackResults.packageDetails.weightAndDimensions.dimensions[0].width}x${trackResults.packageDetails.weightAndDimensions.dimensions[0].height} ${trackResults.packageDetails.weightAndDimensions.dimensions[0].units}</li>
+                </ul>
             `;
 
             responseDiv.innerHTML = resultsHTML;
