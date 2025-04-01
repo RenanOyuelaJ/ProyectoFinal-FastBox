@@ -49,4 +49,10 @@ curl_close($ch);
 // Mostrar el código de estado HTTP y la respuesta
 echo "Código de estado HTTP: " . $http_status . "<br>";
 echo "Respuesta de la API: <pre>" . htmlspecialchars($response) . "</pre>";
+
+// Intentar decodificar la respuesta para obtener más detalles
+$response_data = json_decode($response, true);
+if (isset($response_data['errors'])) {
+    echo "<br><strong>Errores:</strong><pre>" . print_r($response_data['errors'], true) . "</pre>";
+}
 ?>
