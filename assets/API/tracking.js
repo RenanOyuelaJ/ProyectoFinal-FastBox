@@ -11,6 +11,9 @@ function trackPackage() {
     return;
   }
 
+  // Verificamos que el número de rastreo esté correcto
+  console.log("Número de rastreo enviado:", trackingNumber);
+
   // Llamada a la API de FedEx para obtener el token y los resultados del seguimiento
   fetch(fedexUrl + '?trackingNumber=' + trackingNumber)
     .then(response => response.json())

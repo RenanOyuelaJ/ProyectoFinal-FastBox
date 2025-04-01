@@ -10,6 +10,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit();
 }
 
+// Obtenemos el número de rastreo de la URL
+$trackingNumber = isset($_GET['trackingNumber']) ? $_GET['trackingNumber'] : '';
+
+if (empty($trackingNumber)) {
+    echo json_encode(['error' => 'No se proporcionó un número de rastreo']);
+    exit;
+}
+
+// Aquí continúa el código para hacer la solicitud a la API de FedEx con el número de rastreo
+echo "Número de rastreo recibido: " . $trackingNumber;
+
 // Verificar si se envió un número de rastreo
 if (!isset($_POST['tracking_number'])) {
     echo json_encode(["error" => "No se proporcionó un número de rastreo"]);
