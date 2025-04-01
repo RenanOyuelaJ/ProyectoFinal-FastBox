@@ -20,6 +20,8 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
             "Authorization: Basic " . base64_encode("$clientId:$clientSecret"),
             "Content-Type: application/x-www-form-urlencoded"
         ],
+        CURLOPT_VERBOSE => true, // Habilitar verbose
+        CURLOPT_STDERR => fopen('php://stderr', 'w') // Salida de la depuración
     ];
 
     $curl = curl_init();
@@ -30,7 +32,7 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
     if ($authResponse === false) {
         echo json_encode(["error" => "Error de cURL: " . curl_error($curl)]);
         curl_close($curl);
-        exit;
+        die(); // Detener ejecución si no hay respuesta
     }
 
     // Depurar la respuesta de la API
@@ -53,6 +55,7 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
         exit;
     }
 }
+
 
 // Verifica si hay un número de rastreo en la solicitud GET
 if (!isset($_GET['tracking_number'])) {
