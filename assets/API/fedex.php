@@ -7,33 +7,39 @@ $clientSecret = "b2bf9b99deb645e888e5c9c6e0d66657";
 $authUrl = "https://apis-sandbox.fedex.com/oauth/token";
 $trackUrl = "https://apis-sandbox.fedex.com/track/v1/trackingnumbers";
 
-// 1️⃣ Función para obtener el token
+// Función para obtener el token
 function obtenerToken($clientId, $clientSecret, $authUrl) {
     $data = http_build_query(['grant_type' => 'client_credentials']);
     
+    $authHeader = "Authorization: Basic " . base64_encode("$clientId:$clientSecret");
+
     $options = [
         CURLOPT_URL => $authUrl,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_POST => true,
         CURLOPT_POSTFIELDS => $data,
         CURLOPT_HTTPHEADER => [
-            "Authorization: Basic " . base64_encode("$clientId:$clientSecret"),
+            $authHeader,
             "Content-Type: application/x-www-form-urlencoded"
         ],
+        CURLOPT_VERBOSE => true // Activa el modo detallado
     ];
 
     $curl = curl_init();
     curl_setopt_array($curl, $options);
     $authResponse = curl_exec($curl);
     $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-    
-    if ($authResponse === false || $httpCode !== 200) {
-        echo json_encode(["error" => "Error en la solicitud de token: " . curl_error($curl)]);
-        curl_close($curl);
+    $curlError = curl_error($curl);
+
+    curl_close($curl);
+
+    // Depuración: Muestra la respuesta de FedEx
+    if ($authResponse === false) {
+        echo json_encode(["error" => "Error en la solicitud de token: " . $curlError]);
         exit;
     }
 
-    curl_close($curl);
+    echo "Respuesta del servidor de autenticación: " . $authResponse . "\n";
 
     // Intenta analizar la respuesta
     $authResponseData = json_decode($authResponse, true);
@@ -42,10 +48,16 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
         exit;
     }
 
-    return $authResponseData["access_token"] ?? null;
+    if (!isset($authResponseData["access_token"])) {
+        echo json_encode(["error" => "No se pudo obtener el token. Respuesta: " . json_encode($authResponseData)]);
+        exit;
+    }
+
+    return $authResponseData["access_token"];
 }
 
-// 2️⃣ Verificar si hay un número de rastreo en la solicitud
+
+// Verificar si hay un número de rastreo en la solicitud
 if (!isset($_GET['tracking_number'])) {
     echo json_encode(["error" => "Falta el número de rastreo"]);
     exit;
@@ -59,7 +71,7 @@ if (!$token) {
     exit;
 }
 
-// 3️⃣ Construcción del JSON de tracking (basado en la documentación)
+// 3Construcción del JSON de tracking (basado en la documentación)
 $trackingData = json_encode([
     "trackingInfo" => [
         [
@@ -68,7 +80,7 @@ $trackingData = json_encode([
     ]
 ]);
 
-// 4️⃣ Configuración de la solicitud de rastreo
+// Configuración de la solicitud de rastreo
 $options = [
     CURLOPT_URL => $trackUrl,
     CURLOPT_RETURNTRANSFER => true,
@@ -87,7 +99,7 @@ $response = curl_exec($curl);
 $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 curl_close($curl);
 
-// 5️⃣ Evaluamos la respuesta
+// Evaluamos la respuesta
 if ($httpCode === 200) {
     echo $response;
 } else {
