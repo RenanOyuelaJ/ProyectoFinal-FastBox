@@ -8,6 +8,7 @@ $authUrl = "https://apis-sandbox.fedex.com/oauth/token";
 $trackUrl = "https://apis-sandbox.fedex.com/track/v1/trackingnumbers";
 
 // Función para obtener el token de autenticación
+// Función para obtener el token de autenticación
 function obtenerToken($clientId, $clientSecret, $authUrl) {
     $data = http_build_query(['grant_type' => 'client_credentials']);
     
@@ -20,23 +21,21 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
             "Authorization: Basic " . base64_encode("$clientId:$clientSecret"),
             "Content-Type: application/x-www-form-urlencoded"
         ],
-        CURLOPT_VERBOSE => true, // Habilitar verbose
-        CURLOPT_STDERR => fopen('php://stderr', 'w') // Salida de la depuración
     ];
 
     $curl = curl_init();
     curl_setopt_array($curl, $options);
     $authResponse = curl_exec($curl);
 
-    // Verifica si hubo un error en la solicitud de cURL
+    // Verifica si hubo un error en la solicitud
     if ($authResponse === false) {
-        echo json_encode(["error" => "Error de cURL: " . curl_error($curl)]);
+        echo json_encode(["error" => "Error en la solicitud de token: " . curl_error($curl)]);
         curl_close($curl);
-        die(); // Detener ejecución si no hay respuesta
+        exit;
     }
 
-    // Depurar la respuesta de la API
-    var_dump($authResponse);
+    // Imprimir la respuesta completa para depuración
+    echo "Respuesta del servidor: " . $authResponse;  // Aquí se imprime la respuesta del servidor
 
     // Intenta analizar la respuesta solo si es JSON válido
     $authResponseData = json_decode($authResponse, true);
@@ -55,6 +54,7 @@ function obtenerToken($clientId, $clientSecret, $authUrl) {
         exit;
     }
 }
+
 
 
 // Verifica si hay un número de rastreo en la solicitud GET
