@@ -1,35 +1,27 @@
-function obtenerTracking() {
-    const trackingNumber = document.getElementById("trackingInput").value;
+// Definir la URL base manualmente
+const BASE_URL = 'https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev';
+
+// Función para rastrear el paquete
+function trackPackage() {
+    const trackingNumber = document.getElementById('trackingNumber').value;
+
     if (!trackingNumber) {
-        console.error("Ingrese un número de rastreo.");
+        alert('Por favor, ingresa un número de rastreo');
         return;
     }
 
-    const url = `https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/assets/API/fedex.php?tracking_number=${trackingNumber}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(data => {
-            if (data.error) {
-                console.error("Error:", data.error);
-            } else {
-                // Aquí procesas el resultado y lo muestras en el frontend
-                console.log("Datos de rastreo:", data);
-                mostrarResultado(data);
-            }
-        })
-        .catch(error => console.error("Error al hacer la solicitud:", error));
-}
-
-function mostrarResultado(data) {
-    // Mostrar el resultado en el frontend (puedes hacerlo en el HTML como prefieras)
-    const resultadoDiv = document.getElementById("resultado");
-    if (data && data.output) {
-        resultadoDiv.innerHTML = `
-            <h3>Resultado de rastreo:</h3>
-            <pre>${JSON.stringify(data, null, 2)}</pre>
-        `;
-    } else {
-        resultadoDiv.innerHTML = "<p>No se encontraron datos de rastreo.</p>";
-    }
+    fetch(`${BASE_URL}/fedex.php`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ trackingNumber: trackingNumber })
+    })
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('result').innerHTML = JSON.stringify(data, null, 2);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }

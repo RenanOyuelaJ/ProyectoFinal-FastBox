@@ -31,14 +31,51 @@ $response = curl_exec($ch);
 // Verificamos si hubo errores
 if (curl_errno($ch)) {
     echo 'Error en cURL: ' . curl_error($ch);
+    exit;
+}
+
+// Decodificamos la respuesta del token
+$token_data = json_decode($response, true);
+$access_token = $token_data['access_token']; // Obtenemos el token
+
+// Realizamos la solicitud de rastreo a la API de FedEx
+$tracking_number = $_POST['trackingNumber']; // Obtenemos el número de rastreo desde el cuerpo de la solicitud
+
+// URL de la API de FedEx para rastreo
+$tracking_url = 'https://apis-sandbox.fedex.com/track/v1/trackingnumbers';
+
+// Datos a enviar en la solicitud de rastreo
+$tracking_data = [
+    'trackingInfo' => [
+        [
+            'trackingNumberInfo' => ['trackingNumber' => $tracking_number]
+        ]
+    ]
+];
+
+// Inicializamos cURL para la solicitud de rastreo
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $tracking_url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    'Authorization: Bearer ' . $access_token,
+    'Content-Type: application/json',
+]);
+curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($tracking_data));
+
+// Ejecutamos la solicitud de rastreo
+$tracking_response = curl_exec($ch);
+
+// Verificamos si hubo errores en la solicitud de rastreo
+if (curl_errno($ch)) {
+    echo 'Error en cURL: ' . curl_error($ch);
+    exit;
 }
 
 // Cerramos la sesión cURL
 curl_close($ch);
 
-// Mostramos la respuesta
-echo "<pre>";
-echo "Respuesta de la API: ";
-print_r(json_decode($response, true));
-echo "</pre>";
+// Devolvemos la respuesta como JSON
+echo $tracking_response;
 ?>
