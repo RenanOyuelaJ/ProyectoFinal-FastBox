@@ -35,14 +35,18 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
 // Ejecutar la solicitud cURL
 $response = curl_exec($ch);
 
-// Verificar si hubo un error
+// Verificar si hubo un error en la solicitud cURL
 if ($response === false) {
     die('Error en la solicitud: ' . curl_error($ch));
 }
 
+// Obtener el código de estado HTTP de la respuesta
+$http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
 // Cerrar cURL
 curl_close($ch);
 
-// Mostrar la respuesta
-echo "Respuesta de la API: " . $response;
+// Mostrar el código de estado HTTP y la respuesta
+echo "Código de estado HTTP: " . $http_status . "<br>";
+echo "Respuesta de la API: <pre>" . htmlspecialchars($response) . "</pre>";
 ?>
