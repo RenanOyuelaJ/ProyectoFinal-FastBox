@@ -14,6 +14,8 @@ async function trackPackage() {
         const response = await fetch(`${apiUrl}?trackingNumber=${trackingNumber}`);
         const data = await response.json();
 
+        console.log("Respuesta completa de la API:", data);
+
         // Verificamos si la respuesta contiene un error
         if (data.error) {
             responseDiv.innerHTML = data.error;

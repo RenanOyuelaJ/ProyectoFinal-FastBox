@@ -97,4 +97,9 @@ curl_close($ch);
 
 // Devolver la respuesta de FedEx
 echo $tracking_response;
+
+file_put_contents('respuesta.json', $tracking_response);
+
+// Luego, puedes enviar la respuesta al navegador para indicar que el archivo está disponible
+echo json_encode(['message' => 'Respuesta guardada en respuesta.json']);
 ?>
