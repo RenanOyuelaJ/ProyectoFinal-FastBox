@@ -52,7 +52,16 @@ echo "Respuesta de la API: <pre>" . htmlspecialchars($response) . "</pre>";
 
 // Intentar decodificar la respuesta para obtener más detalles
 $response_data = json_decode($response, true);
+
+// Si hay errores en la respuesta, mostrarlos
 if (isset($response_data['errors'])) {
-    echo "<br><strong>Errores:</strong><pre>" . print_r($response_data['errors'], true) . "</pre>";
+    echo "<strong>Errores:</strong><pre>" . print_r($response_data['errors'], true) . "</pre>";
+}
+
+// Si la respuesta contiene un token, mostrarlo
+if (isset($response_data['access_token'])) {
+    echo "<strong>Token de acceso:</strong> " . $response_data['access_token'];
+} else {
+    echo "<strong>Detalles adicionales de la respuesta:</strong><pre>" . print_r($response_data, true) . "</pre>";
 }
 ?>
