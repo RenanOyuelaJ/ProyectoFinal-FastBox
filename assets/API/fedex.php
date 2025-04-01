@@ -19,7 +19,8 @@ $headers = [
 
 // Configurar los datos del formulario para obtener el token
 $data = [
-    'grant_type' => 'client_credentials'
+    'grant_type' => 'client_credentials',
+    'scope' => 'tracking'  // Usamos el scope relacionado con el seguimiento
 ];
 
 // Iniciar cURL
@@ -46,22 +47,74 @@ $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Cerrar cURL
 curl_close($ch);
 
-// Mostrar el código de estado HTTP y la respuesta
-echo "Código de estado HTTP: " . $http_status . "<br>";
-echo "Respuesta de la API: <pre>" . htmlspecialchars($response) . "</pre>";
+// Verificar si el código de estado es 200 (OK)
+if ($http_status != 200) {
+    echo "Código de estado HTTP: " . $http_status . "<br>";
+    echo "Respuesta de la API: <pre>" . htmlspecialchars($response) . "</pre>";
+    exit;
+}
 
-// Intentar decodificar la respuesta para obtener más detalles
+// Decodificar la respuesta JSON para obtener el token de acceso
 $response_data = json_decode($response, true);
 
-// Si hay errores en la respuesta, mostrarlos
-if (isset($response_data['errors'])) {
-    echo "<strong>Errores:</strong><pre>" . print_r($response_data['errors'], true) . "</pre>";
+// Obtener el token de acceso
+$access_token = $response_data['access_token'] ?? null;
+
+if (!$access_token) {
+    echo "Error: No se obtuvo el token de acceso.<br>";
+    exit;
 }
 
-// Si la respuesta contiene un token, mostrarlo
-if (isset($response_data['access_token'])) {
-    echo "<strong>Token de acceso:</strong> " . $response_data['access_token'];
-} else {
-    echo "<strong>Detalles adicionales de la respuesta:</strong><pre>" . print_r($response_data, true) . "</pre>";
+// Ahora que tenemos el token, hacer la solicitud para el seguimiento
+// URL de la API para obtener el estado de un paquete
+$tracking_url = "https://apis-sandbox.fedex.com/track/v1/trackingnumbers";
+
+// Datos de la solicitud de seguimiento
+$tracking_payload = [
+    "includeDetailedScans" => true,
+    "trackingInfo" => [
+        [
+            "shipDateBegin" => "2020-03-29",
+            "shipDateEnd" => "2020-04-01",
+            "trackingNumberInfo" => [
+                "trackingNumber" => "123456789012" // Aquí pones el número de seguimiento que deseas rastrear
+            ]
+        ]
+    ]
+];
+
+// Configurar los encabezados para la solicitud de seguimiento
+$tracking_headers = [
+    "Content-Type: application/json",
+    "Authorization: Bearer $access_token"
+];
+
+// Iniciar cURL nuevamente para la solicitud de seguimiento
+$ch_tracking = curl_init();
+
+// Configurar cURL para la solicitud de seguimiento
+curl_setopt($ch_tracking, CURLOPT_URL, $tracking_url);
+curl_setopt($ch_tracking, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch_tracking, CURLOPT_HTTPHEADER, $tracking_headers);
+curl_setopt($ch_tracking, CURLOPT_POST, true);
+curl_setopt($ch_tracking, CURLOPT_POSTFIELDS, json_encode($tracking_payload));
+
+// Ejecutar la solicitud de seguimiento
+$response_tracking = curl_exec($ch_tracking);
+
+// Verificar si hubo un error en la solicitud de seguimiento
+if ($response_tracking === false) {
+    die('Error en la solicitud de seguimiento: ' . curl_error($ch_tracking));
 }
+
+// Obtener el código de estado HTTP de la respuesta de seguimiento
+$http_status_tracking = curl_getinfo($ch_tracking, CURLINFO_HTTP_CODE);
+
+// Cerrar la cURL de seguimiento
+curl_close($ch_tracking);
+
+// Mostrar el código de estado y la respuesta de seguimiento
+echo "Código de estado HTTP de seguimiento: " . $http_status_tracking . "<br>";
+echo "Respuesta de la API de seguimiento: <pre>" . htmlspecialchars($response_tracking) . "</pre>";
+
 ?>
