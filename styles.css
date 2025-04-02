@@ -71,6 +71,8 @@ body{
     border-radius: 10px;
 }
 
+/*Contenedores de Imagenes*/
+/*Index*/
 .container-image{
     background-image: url("/assets/media/fastboxWOMEN2.png");
     height: 400px;
