@@ -79,6 +79,12 @@ body{
     margin-top: 2.5%;
 }
 
+/*Quienes somos BG*/
+.image-bg-qs{
+    background-image: url("/assets/media/quienes\ somos.jpg");
+    height: 400px;
+}
+
 /*Enlaces rapidos de inicio*/
 .enlace-r {
     text-decoration: none;
