@@ -52,8 +52,8 @@ body{
 
 .main-container{
     background-color: #ffffff;
-    margin-left: 1%;
-    margin-right: 1%;
+    /* margin-left: 1%;
+    margin-right: 1%; */
     padding: 1%;
     margin-bottom: 5%;
 }
@@ -75,4 +75,16 @@ body{
     max-width: 100%;
     height: auto;
     border-radius: 10px;
+}
+
+.container-image{
+    background-image: url("/assets/media/fastboxWOMEN2.png");
+    height: 400px;
+    margin-top: 2.5%;
+}
+
+/*Enlaces rapidos de inicio*/
+.col .enlace-r:hover{
+    color: black;
+    text-decoration: underline;
 }
