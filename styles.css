@@ -88,3 +88,22 @@ body{
     color: black;
     text-decoration: underline;
 }
+
+.icon-button {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+    position: relative;
+    margin-right: 10px;
+}
+
+.icon-button i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.icon-button:focus {
+    outline: none;
+    box-shadow: none;
+}
