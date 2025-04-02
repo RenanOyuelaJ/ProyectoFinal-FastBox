@@ -51,11 +51,11 @@ body{
 }
 
 .main-container{
-    background-color: #ffffff;
-    /* margin-left: 1%;
-    margin-right: 1%; */
-    padding: 1%;
-    margin-bottom: 5%;
+    background-color: #ffffff; 
+    padding-top: 1%;
+    padding-left: 1%;
+    padding-right: 1%;  
+    margin-bottom: 0;
 }
 
 
@@ -84,7 +84,15 @@ body{
 }
 
 /*Enlaces rapidos de inicio*/
-.col .enlace-r:hover{
+.enlace-r {
+    text-decoration: none;
+    color: rgb(85, 85, 85);
+    display: block;
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.enlace-r:hover {
     color: black;
     text-decoration: underline;
 }
