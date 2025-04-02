@@ -99,27 +99,76 @@
             <h1>Rastreo de Envíos</h1>
         </header>
         
-        <section>
-            <p>Ingresa tu número de rastreo para conocer la ubicación de tu paquete en tiempo real.</p>
-            <input type="text" id="trackingNumber" name="trackingNumber" placeholder="Ingrese el número de rastreo">
-            <button class="btn btn-secondary" onclick="trackPackage()">Rastrear</button>
+        <section class="tracking-section d-flex flex-column align-items-center text-center py-5">
+            <h1 class="fw-bold text-primary">Rastrea tu paquete</h1>
+            <p class="text-muted">Ingresa tu número de rastreo para conocer la ubicación de tu paquete en tiempo real.</p>
             
-            <!-- Contenedor para mostrar los resultados -->
-            <div id="response"></div>
+            <div class="tracking-form d-flex flex-column flex-md-row align-items-center gap-2">
+                <input type="text" id="trackingNumber" class="form-control" placeholder="Ingrese el número de rastreo" style="max-width: 400px;">
+                <button class="btn btn-primary" onclick="trackPackage()">Rastrear</button>
+            </div>
+            
+            <div id="trackingResults" class="mt-4 p-3 border rounded bg-light" style="display: none; max-width: 600px;">
+                <h4 class="text-secondary">Estado del envío:</h4>
+                <p id="trackingStatus" class="fw-bold"></p>
+            </div>
         </section>
         
-        <section>
-            <h2>Cómo Funciona el Rastreo</h2>
-            <p>Nuestro sistema de rastreo en tiempo real te permite conocer el estado de tu envío en cualquier momento.</p>
-            <ul>
-                <li><strong>Recibido:</strong> Hemos recibido tu paquete y está listo para ser enviado.</li>
-                <li><strong>En tránsito:</strong> Tu paquete está en camino a su destino.</li>
-                <li><strong>En entrega:</strong> El paquete está siendo entregado.</li>
-                <li><strong>Entregado:</strong> El destinatario ha recibido el paquete.</li>
-                <li><strong>No disponible:</strong> Estamos trabajando junto a nuestros partners para darte el último estado de tu paquete.</li>
-            </ul>
+        <section class="tracking-info py-5 bg-light text-center">
+            <h2 class="fw-bold">Cómo Funciona el Rastreo</h2>
+            <p class="text-muted">Nuestro sistema de rastreo en tiempo real te permite conocer el estado de tu envío en cualquier momento.</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card shadow-sm p-3">
+                            <h5 class="fw-bold text-primary">📦 Recibido</h5>
+                            <p>Hemos recibido tu paquete y está listo para ser enviado.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card shadow-sm p-3">
+                            <h5 class="fw-bold text-warning">🚚 En tránsito</h5>
+                            <p>Tu paquete está en camino a su destino.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card shadow-sm p-3">
+                            <h5 class="fw-bold text-success">📍 En entrega</h5>
+                            <p>El paquete está siendo entregado.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card shadow-sm p-3">
+                            <h5 class="fw-bold text-success">✅ Entregado</h5>
+                            <p>El destinatario ha recibido el paquete.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card shadow-sm p-3">
+                            <h5 class="fw-bold text-info">🔄 Reintento de entrega</h5>
+                            <p>El intento de entrega no fue exitoso. Se programará un nuevo intento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         
-    </body>
-    </html>
-    
+        <script>
+            function trackPackage() {
+                const trackingNumber = document.getElementById('trackingNumber').value;
+                const trackingResults = document.getElementById('trackingResults');
+                const trackingStatus = document.getElementById('trackingStatus');
+                
+                if (!trackingNumber) {
+                    alert('Por favor, ingrese un número de rastreo.');
+                    return;
+                }
+                
+                // Simulación de estados de rastreo
+                const statuses = ['Recibido', 'En tránsito', 'En entrega', 'Entregado', 'Reintento de entrega'];
+                const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+                
+                trackingStatus.textContent = randomStatus;
+                trackingResults.style.display = 'block';
+            }
+        </script>
