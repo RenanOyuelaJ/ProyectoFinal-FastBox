@@ -4,48 +4,44 @@ async function calcularTarifa() {
     const origenPostal = document.getElementById("origenPostal").value;
     const destinoPostal = document.getElementById("destinoPostal").value;
     const peso = document.getElementById("peso").value;
-    const tarifaRespuesta = document.getElementById("tarifaRespuesta");
+    const tarifaRespuestaDiv = document.getElementById("tarifaRespuesta");
 
     if (!origenPostal || !destinoPostal || !peso) {
-        tarifaRespuesta.innerHTML = "Por favor ingresa todos los datos requeridos.";
+        tarifaRespuestaDiv.innerHTML = "Por favor, complete todos los campos.";
         return;
     }
 
     console.log(`Datos enviados: Origen ${origenPostal}, Destino ${destinoPostal}, Peso ${peso} lbs`);
 
     try {
-        const response = await fetch(apiUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                origin: origenPostal,
-                destination: destinoPostal,
-                weight: parseFloat(peso)
-            })
-        });
-
+        const response = await fetch(`${apiUrl}?origenPostal=${origenPostal}&destinoPostal=${destinoPostal}&peso=${peso}`);
         const data = await response.json();
+
         console.log("Respuesta completa de la API:", data);
 
         if (data.error) {
-            tarifaRespuesta.innerHTML = `<p style="color: red;">${data.error}</p>`;
+            tarifaRespuestaDiv.innerHTML = data.error;
             return;
         }
 
-        if (data.output?.rateReplyDetails?.length > 0) {
-            let tarifasHTML = "<h3>Opciones de Tarifas:</h3><ul>";
-            data.output.rateReplyDetails.forEach(rate => {
-                tarifasHTML += `<li><strong>${rate.serviceType}:</strong> ${rate.ratedShipmentDetails[0].totalNetCharge} USD</li>`;
+        // Aquí debes procesar la respuesta de la API y mostrar las tarifas
+        if (data.output && data.output.rateReplyDetails) {
+            const tarifas = data.output.rateReplyDetails;
+            tarifaRespuestaDiv.innerHTML = "<h3>Tarifas disponibles:</h3><table class='table table-sm'><thead><tr><th>Servicio</th><th>Tarifa</th></tr></thead><tbody>";
+            tarifas.forEach(tarifa => {
+                tarifaRespuestaDiv.innerHTML += `
+                    <tr>
+                        <td>${tarifa.serviceType}</td>
+                        <td>${tarifa.totalNetCharge.amount} ${tarifa.totalNetCharge.currency}</td>
+                    </tr>
+                `;
             });
-            tarifasHTML += "</ul>";
-
-            tarifaRespuesta.innerHTML = tarifasHTML;
+            tarifaRespuestaDiv.innerHTML += "</tbody></table>";
         } else {
-            tarifaRespuesta.innerHTML = "<p>No se encontraron tarifas disponibles.</p>";
+            tarifaRespuestaDiv.innerHTML = "No se encontraron tarifas para esta solicitud.";
         }
-
     } catch (error) {
         console.error("Hubo un error al intentar obtener las tarifas.", error);
-        tarifaRespuesta.innerHTML = "<p style='color: red;'>Hubo un error al intentar obtener las tarifas.</p>";
+        tarifaRespuestaDiv.innerHTML = "Hubo un error al intentar obtener las tarifas.";
     }
 }
