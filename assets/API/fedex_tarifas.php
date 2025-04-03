@@ -83,7 +83,10 @@ $rate_request_data = [
         "pickupType" => "DROPOFF_AT_FEDEX_LOCATION",
         "shippingChargesPayment" => [
             "paymentType" => "SENDER",
-            "payor" => new stdClass() // Esto se puede ajustar según sea necesario
+            "payor" => [
+                "accountNumber" => "740561073", 
+                "countryCode" => "US"           
+            ]
         ],
         "requestedPackageLineItems" => [
             [

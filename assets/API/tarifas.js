@@ -17,7 +17,10 @@ async function calcularTarifa() {
         const response = await fetch(`${apiUrl}?origenPostal=${origenPostal}&destinoPostal=${destinoPostal}&peso=${peso}`);
         const data = await response.json();
 
-        console.log("Respuesta completa de la API:", data);
+        console.log("Respuesta cruda de la API:", data);  // Aquí mostramos la respuesta cruda de la API
+
+        // Muestra la respuesta cruda para que puedas ver la estructura completa
+        tarifaRespuestaDiv.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
 
         if (data.error) {
             tarifaRespuestaDiv.innerHTML = data.error;
