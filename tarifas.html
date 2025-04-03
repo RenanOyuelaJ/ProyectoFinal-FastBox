@@ -150,21 +150,8 @@
         </header>
 
         <section>
-            <h2>Calculadora de Tarifas</h2>
-            <form action="#" method="POST">
-                <label for="origen">Origen:</label>
-                <input type="text" id="origen" name="origen" required>
-
-                <label for="destino">Destino:</label>
-                <input type="text" id="destino" name="destino" required>
-
-                <label for="peso">Peso (kg):</label>
-                <input type="number" id="peso" name="peso" step="0.01" required>
-
-                <button type="submit">Calcular</button>
-            </form>
             <div>
-                <h3>Calculadora de Tarifas FedEx</h3>
+                <h2>Calculadora de Tarifas FedEx</h2>
                 <label for="origenPostal">Código Postal de Origen:</label>
                 <input type="text" id="origenPostal" required>
                 
@@ -174,11 +161,10 @@
                 <label for="peso">Peso del Paquete (lbs):</label>
                 <input type="number" id="peso" required>
                 
-                <button onclick="calcularTarifa()">Calcular Tarifa</button>
+                <button class="btn btn-primary" onclick="calcularTarifa()">Calcular Tarifa</button>
                 
                 <div id="tarifaRespuesta"></div>
-            </div>
-            
+            </div> 
         </section>
 
         <section>
