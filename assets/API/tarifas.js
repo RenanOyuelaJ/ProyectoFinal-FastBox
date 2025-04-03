@@ -1,46 +1,51 @@
-const apiUrlTarifas = "https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/fedex_tarifas.php";
+const apiUrl = "https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/fedex_tarifas.php";
 
 async function calcularTarifa() {
     const origenPostal = document.getElementById("origenPostal").value;
     const destinoPostal = document.getElementById("destinoPostal").value;
     const peso = document.getElementById("peso").value;
-    const respuestaDiv = document.getElementById("tarifaRespuesta");
+    const tarifaRespuesta = document.getElementById("tarifaRespuesta");
 
     if (!origenPostal || !destinoPostal || !peso) {
-        respuestaDiv.innerHTML = "Por favor, completa todos los campos.";
+        tarifaRespuesta.innerHTML = "Por favor ingresa todos los datos requeridos.";
         return;
     }
 
-    const requestData = {
-        accountNumber: { value: "740561073" },
-        rateRequestControlParameters: { returnTransitTimes: true },
-        requestedShipment: {
-            shipper: { address: { postalCode: origenPostal, countryCode: "US" } },
-            recipient: { address: { postalCode: destinoPostal, countryCode: "US" } },
-            pickupType: "DROPOFF_AT_FEDEX_LOCATION",
-            shippingChargesPayment: { paymentType: "SENDER", payor: {} },
-            requestedPackageLineItems: [ { weight: { units: "LB", value: peso } } ]
-        }
-    };
+    console.log(`Datos enviados: Origen ${origenPostal}, Destino ${destinoPostal}, Peso ${peso} lbs`);
 
     try {
-        const response = await fetch(apiUrlTarifas, {
+        const response = await fetch(apiUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(requestData)
+            body: JSON.stringify({
+                origin: origenPostal,
+                destination: destinoPostal,
+                weight: parseFloat(peso)
+            })
         });
 
         const data = await response.json();
-        console.log("Respuesta de FedEx Tarifa:", data);
+        console.log("Respuesta completa de la API:", data);
 
         if (data.error) {
-            respuestaDiv.innerHTML = `<p style='color:red;'>Error: ${data.error}</p>`;
-        } else {
-            const rateDetail = data.output.rateReplyDetails?.[0]?.ratedShipmentDetails?.[0]?.totalNetCharge?.amount || "No disponible";
-            respuestaDiv.innerHTML = `<p>Tarifa estimada: $${rateDetail} USD</p>`;
+            tarifaRespuesta.innerHTML = `<p style="color: red;">${data.error}</p>`;
+            return;
         }
+
+        if (data.output?.rateReplyDetails?.length > 0) {
+            let tarifasHTML = "<h3>Opciones de Tarifas:</h3><ul>";
+            data.output.rateReplyDetails.forEach(rate => {
+                tarifasHTML += `<li><strong>${rate.serviceType}:</strong> ${rate.ratedShipmentDetails[0].totalNetCharge} USD</li>`;
+            });
+            tarifasHTML += "</ul>";
+
+            tarifaRespuesta.innerHTML = tarifasHTML;
+        } else {
+            tarifaRespuesta.innerHTML = "<p>No se encontraron tarifas disponibles.</p>";
+        }
+
     } catch (error) {
-        console.error("Error al calcular tarifa:", error);
-        respuestaDiv.innerHTML = "Hubo un error al calcular la tarifa.";
+        console.error("Hubo un error al intentar obtener las tarifas.", error);
+        tarifaRespuesta.innerHTML = "<p style='color: red;'>Hubo un error al intentar obtener las tarifas.</p>";
     }
 }
