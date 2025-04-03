@@ -20,6 +20,10 @@ $auth_data = [
 ];
 
 $ch = curl_init();
+
+// Registrar lo que se está enviando exactamente
+file_put_contents("payload_log.json", json_encode($rate_request_data, JSON_PRETTY_PRINT));
+
 curl_setopt($ch, CURLOPT_URL, $auth_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
