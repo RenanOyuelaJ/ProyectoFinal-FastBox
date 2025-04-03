@@ -20,12 +20,6 @@ $auth_data = [
 ];
 
 $ch = curl_init();
-
-var_dump($rate_request_data);
-exit();
-// Registrar lo que se está enviando exactamente
-file_put_contents("payload_log.json", json_encode($rate_request_data, JSON_PRETTY_PRINT));
-
 curl_setopt($ch, CURLOPT_URL, $auth_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
@@ -85,6 +79,12 @@ $rate_request_data = [
     ]
 ];
 
+// **Imprimir el contenido de $rate_request_data antes de enviarlo a la API**
+var_dump($rate_request_data);
+exit();  // Detener ejecución para verificar datos
+
+// Registrar lo que se está enviando exactamente
+file_put_contents("payload_log.json", json_encode($rate_request_data, JSON_PRETTY_PRINT));
 
 // Enviar la solicitud de tarifas a la API de FedEx
 $rate_url = "https://apis-sandbox.fedex.com/rate/v1/comprehensiverates/quotes";
