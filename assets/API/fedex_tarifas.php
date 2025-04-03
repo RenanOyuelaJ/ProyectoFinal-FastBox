@@ -45,7 +45,7 @@ $rate_request_data = [
     ],
     "rateRequestControlParameters" => [
         "returnTransitTimes" => true,
-        "rateRequestType" => ["ACCOUNT"]
+        "rateRequestType" => ["ACCOUNT"]  // 🔥 Agregamos esto
     ],
     "requestedShipment" => [
         "shipper" => [
