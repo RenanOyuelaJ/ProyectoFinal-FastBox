@@ -6,6 +6,7 @@ async function calcularTarifa() {
     const peso = document.getElementById("peso").value;
     const tarifaRespuestaDiv = document.getElementById("tarifaRespuesta");
 
+    // Validar que todos los campos están llenos
     if (!origenPostal || !destinoPostal || !peso) {
         tarifaRespuestaDiv.innerHTML = "Por favor, complete todos los campos.";
         return;
@@ -16,15 +17,22 @@ async function calcularTarifa() {
     try {
         const response = await fetch(`${apiUrl}?origenPostal=${origenPostal}&destinoPostal=${destinoPostal}&peso=${peso}`);
         
-        // Usamos .text() en lugar de .json() para recibir la respuesta cruda
-        const data = await response.text(); 
+        if (!response.ok) {  // Verificar si la respuesta es exitosa
+            throw new Error("Error al hacer la solicitud: " + response.statusText);
+        }
 
-        console.log("Respuesta cruda de la API:", data);  // Mostrar la respuesta cruda en la consola
+        const data = await response.json();
+        console.log("Respuesta de la API:", data);  // Mostrar la respuesta procesada
 
-        // Mostrar la respuesta cruda en el HTML
-        tarifaRespuestaDiv.innerHTML = `<pre>${data}</pre>`;
+        console.log("Asignando contenido a tarifaRespuestaDiv");
+        tarifaRespuestaDiv.innerHTML = "<pre>{ \"respuesta\": \"esto es una prueba\" }</pre>";
+        console.log("Contenido asignado:", tarifaRespuestaDiv.innerHTML);
+
+        // Mostrar la respuesta completa en formato JSON en el HTML
+        //tarifaRespuestaDiv.innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
+        
     } catch (error) {
         console.error("Hubo un error al intentar obtener las tarifas.", error);
-        tarifaRespuestaDiv.innerHTML = "Hubo un error al intentar obtener las tarifas.";
+        tarifaRespuestaDiv.innerHTML = `Hubo un error al intentar obtener las tarifas: ${error.message}`;
     }
 }
