@@ -3,7 +3,7 @@
         "value": "740561073"
     },
     "rateRequestType": [
-        "ACCOUNT"
+        "LIST"
     ],
     "rateRequestControlParameters": {
         "returnTransitTimes": true

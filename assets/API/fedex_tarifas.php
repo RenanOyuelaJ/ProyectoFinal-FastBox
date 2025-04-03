@@ -1,13 +1,4 @@
 <?php
-header("Access-Control-Allow-Origin: *");
-header("Content-Type: application/json");
-
-// Obtener los datos enviados por el frontend
-$origenPostal = isset($_GET['origenPostal']) ? $_GET['origenPostal'] : '';
-$destinoPostal = isset($_GET['destinoPostal']) ? $_GET['destinoPostal'] : '';
-$peso = isset($_GET['peso']) ? $_GET['peso'] : '';
-
-// Parámetros de autenticación
 $client_id = "l7753a7f01f8674b219da9ace51b892791";
 $client_secret = "e49a2d14836b418493661e6333b93f7f";
 $auth_url = 'https://apis-sandbox.fedex.com/oauth/token';
@@ -38,74 +29,7 @@ if (!isset($auth_response_data['access_token'])) {
 
 $access_token = $auth_response_data['access_token'];
 
-// Crear el payload para la solicitud de tarifas
-$rate_request_data = [
-    "accountNumber" => [
-        "value" => "740561073"
-    ],
-    "rateRequestType" => ["LIST"],
-    "rateRequestControlParameters" => [
-        "returnTransitTimes" => true
-    ],
-    "requestedShipment" => [
-        "shipper" => [
-            "address" => [
-                "postalCode" => $origenPostal,
-                "countryCode" => "US"
-            ]
-        ],
-        "recipient" => [
-            "address" => [
-                "postalCode" => $destinoPostal,
-                "countryCode" => "US"
-            ]
-        ],
-        "pickupType" => "DROPOFF_AT_FEDEX_LOCATION",
-        "shippingChargesPayment" => [
-            "paymentType" => "SENDER",
-            "payor" => [
-                "accountNumber" => "740561073", 
-                "countryCode" => "US"           
-            ]
-        ],
-        "requestedPackageLineItems" => [
-            [
-                "weight" => [
-                    "units" => "LB",
-                    "value" => $peso
-                ]
-            ]
-        ]
-    ]
-];
+// Mostrar el token para verificar
+echo "Access Token: " . $access_token;
 
-// Registrar lo que se está enviando exactamente
-file_put_contents("payload_log.json", json_encode($rate_request_data, JSON_PRETTY_PRINT));
-
-// Enviar la solicitud de tarifas a la API de FedEx
-$rate_url = "https://apis-sandbox.fedex.com/rate/v1/comprehensiverates/quotes";
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, $rate_url);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($rate_request_data));
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    "Content-Type: application/json",
-    "Authorization: Bearer $access_token"
-]);
-curl_setopt($ch, CURLOPT_ENCODING, ''); 
-
-$rate_response = curl_exec($ch);
-curl_close($ch);
-
-// Verificar si la respuesta contiene errores
-if (curl_errno($ch)) {
-    echo json_encode(["error" => "Error en la solicitud de tarifas: " . curl_error($ch)]);
-    exit();
-}
-
-// Imprimir la respuesta de la API
-echo "<pre>";
-print_r($rate_response);
-echo "</pre>";
 ?>
