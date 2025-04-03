@@ -85,6 +85,11 @@ body{
     height: 400px;
 }
 
+.img-3{
+    background-image: url("/assets/media/van.png");
+    height: 400px;
+}
+
 /*Enlaces rapidos de inicio*/
 .enlace-r {
     text-decoration: none;
