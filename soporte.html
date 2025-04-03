@@ -12,7 +12,7 @@
 
 
 </head>
-<body>
+<body style="background-color: rgb(247, 247, 247);">
     <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
         <div class="container-fluid" style="padding-top: 3px;border-bottom-width: 3px;padding-bottom: 3px;">
             
@@ -97,38 +97,54 @@
         </div>
     </div>
 
-    <header>
-        <h1>Centro de Soporte</h1>
-        <img src="soporte.jpg" alt="Atención al cliente FastBox" class="img-size">
-    </header>
-    
-    <section>
-        <h2>Contáctanos</h2>
-        <p>Email: <a href="mailto:soporte@fastbox.com">soporte@fastbox.com</a></p>
-        <p>Teléfono: <a href="tel:+525512345678">+52 55 1234 5678</a></p>
-        <p>Horario de atención: Lunes a Viernes, 9:00 AM - 6:00 PM</p>
-    </section>
-    
-    <section>
-        <h2>Formulario de Soporte</h2>
-        <p>Si tienes alguna pregunta o problema, completa el siguiente formulario y te responderemos lo antes posible.</p>
-        <form action="submit-soporte.php" method="POST">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required><br><br>
-    
-            <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" required><br><br>
-    
-            <label for="asunto">Asunto:</label>
-            <input type="text" id="asunto" name="asunto" required><br><br>
-    
-            <label for="mensaje">Mensaje:</label><br>
-            <textarea id="mensaje" name="mensaje" rows="4" cols="50" required></textarea><br><br>
-    
-            <button type="submit">Enviar</button>
-        </form>
-    </section>    
-
+    <div class="main-container" style="margin-top: 4%;">
+        <header>
+            <h1 style="text-align: center;">Centro de Soporte</h1>
+            <img src="soporte.jpg" alt="Atención al cliente FastBox" class="img-size">
+        </header>
+        
+        <div class="container">
+                <div class="card p-4 my-4 text-center">
+                    <h2 style="color:#051e54;">Contáctanos</h2>
+                    <p style="font-size: 25px;">Para más información sobre nuestros servicios, comunícate con nosotros:</p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><strong>Email:</strong> contacto@fastbox.com</li>
+                        <li class="list-group-item"><strong>Teléfono:</strong> +504 9719-1287, +504 3218-3920</li>
+                        <li class="list-group-item"><strong>Dirección:</strong> Av. Circunvalación, Colonia Colombia, contiguo a Teatro Jose Francisco Saybe, 21102 San Pedro Sula </li>
+                        <li class="list-group-item"><strong>Horarios de Atención:</strong> Domingo - Viernes de 7:00 am a 7:00 pm</li>
+                    </ul>
+                </div>
+                
+                <div class="col-md-6" style="margin: 0 auto; padding: 2%;">
+                    <div class="card" style="padding: 2%;">
+                        <h2 style="color:#051e54;">Formulario de Soporte</h2>
+                        <p>Si tienes alguna pregunta o problema, completa el siguiente formulario y te responderemos lo antes posible.</p>
+                        <form action="submit-soporte.php" method="POST">
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo Electrónico:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="asunto" class="form-label">Asunto:</label>
+                                <input type="text" id="asunto" name="asunto" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje:</label>
+                                <textarea id="mensaje" name="mensaje" rows="4" class="form-control" required></textarea>
+                            </div>
+                            <div style="display: flex; justify-content: center; width: 100%;">
+                                <button style="width: 100%;" type="submit" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>    
 </body>
 
 <footer style="background-color: rgba(243, 243, 243, 0.637)">
