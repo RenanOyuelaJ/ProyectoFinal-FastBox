@@ -96,29 +96,108 @@
         </div>
     </div>    
 
-    <header>
-        <h1>Reporte de Pérdida</h1>
-    </header>
-    <p>Si tu paquete no ha llegado o crees que se ha perdido, por favor repórtalo aquí. Nuestro equipo de soporte investigará tu caso.</p>
-    
-    <section>
-        <h2>Detalles del Paquete</h2>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Pérdida</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0d47a1, #90c9f8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 500px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            overflow: hidden;
+        }
+        header {
+            background: #0d47a1;
+            color: white;
+            padding: 20px;
+            border-radius: 12px 12px 12px 12px;
+            font-size: 22px;
+            font-weight: bold;
+            text-align: center;
+        }
+        p {
+            color: #333;
+            margin-top: 15px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            text-align: left;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #90caf9;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f5f5f5;
+            transition: 0.3s;
+        }
+        input:focus, textarea:focus {
+            border-color: #0d47a1;
+            background-color: #e3f2fd;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+        }
+        button {
+            background: #0d47a1;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #1565c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>Reporte de Pérdida</header>
+        <p>Si tu paquete no ha llegado o crees que se ha perdido, repórtalo aquí. Nuestro equipo de soporte investigará tu caso.</p>
+        
         <form action="submit-perdida.php" method="POST">
             <label for="rastreo">Número de Rastreo:</label>
-            <input type="text" id="rastreo" name="rastreo" placeholder="Número de rastreo" required><br><br>
-    
+            <input type="text" id="rastreo" name="rastreo" placeholder="Ej. 123456789" required>
+
             <label for="nombre">Tu Nombre:</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required><br><br>
-    
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Jaffeth Pérez" required>
+
             <label for="email">Correo Electrónico:</label>
-            <input type="email" id="email" name="email" placeholder="Tu correo" required><br><br>
-    
-            <label for="descripcion">Descripción del Problema:</label><br>
-            <textarea id="descripcion" name="descripcion" rows="4" cols="50" placeholder="Describe el problema aquí" required></textarea><br><br>
-    
-            <button type="submit">Reportar Pérdida</button>
+            <input type="email" id="email" name="email" placeholder="Ej. email@correo.com" required>
+
+            <label for="descripcion">Descripción del Problema:</label>
+            <textarea id="descripcion" name="descripcion" rows="4" placeholder="Proporcione detalles sobre su paquete y el problema." required></textarea>
+
+            <button type="submit">Enviar Reporte</button>
         </form>
-    </section>
-    
+    </div>
 </body>
 </html>
