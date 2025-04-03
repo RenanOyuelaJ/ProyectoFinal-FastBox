@@ -89,11 +89,12 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Content-Type: application/json",
     "Authorization: Bearer $access_token"
 ]);
+curl_setopt($ch, CURLOPT_ENCODING, '');  // 🔥 Agregar esta línea para manejar respuestas comprimidas
 
 $rate_response = curl_exec($ch);
 curl_close($ch);
 
-// **Imprimir la respuesta cruda para ver qué devuelve FedEx**
+// **Imprimir la respuesta correctamente descomprimida**
 echo "<pre>";
 print_r($rate_response);
 echo "</pre>";
