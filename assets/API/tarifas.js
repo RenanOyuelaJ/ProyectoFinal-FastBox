@@ -15,53 +15,14 @@ async function calcularTarifa() {
 
     try {
         const response = await fetch(`${apiUrl}?origenPostal=${origenPostal}&destinoPostal=${destinoPostal}&peso=${peso}`);
-        const data = await response.json();
+        
+        // Usamos .text() en lugar de .json() para recibir la respuesta cruda
+        const data = await response.text(); 
 
-        console.log("Respuesta de la API:", data);  // Mostrar la respuesta procesada
+        console.log("Respuesta cruda de la API:", data);  // Mostrar la respuesta cruda en la consola
 
-        if (data.error) {
-            tarifaRespuestaDiv.innerHTML = data.error;
-            return;
-        }
-
-        // Verificar que se recibieron tarifas
-        if (data.length > 0) {
-            tarifaRespuestaDiv.innerHTML = "<h3>Tarifas disponibles:</h3><table class='table table-sm'><thead><tr><th>Servicio</th><th>Tarifa</th></tr></thead><tbody>";
-
-            data.forEach(tarifa => {
-                // Verificar si 'ratedShipmentDetails' existe y tiene detalles
-                if (tarifa.ratedShipmentDetails && tarifa.ratedShipmentDetails.length > 0) {
-                    // Acceder al detalle de la tarifa de forma segura
-                    const ratedDetail = tarifa.ratedShipmentDetails[0];
-
-                    if (ratedDetail && ratedDetail.totalNetCharge && ratedDetail.totalNetCharge.amount) {
-                        tarifaRespuestaDiv.innerHTML += `
-                            <tr>
-                                <td>${tarifa.serviceName}</td>
-                                <td>${ratedDetail.totalNetCharge.amount} ${ratedDetail.totalNetCharge.currency}</td>
-                            </tr>
-                        `;
-                    } else {
-                        tarifaRespuestaDiv.innerHTML += `
-                            <tr>
-                                <td>${tarifa.serviceName}</td>
-                                <td>No disponible</td>
-                            </tr>
-                        `;
-                    }
-                } else {
-                    tarifaRespuestaDiv.innerHTML += `
-                        <tr>
-                            <td>${tarifa.serviceName}</td>
-                            <td>Detalles no disponibles</td>
-                        </tr>
-                    `;
-                }
-            });
-            tarifaRespuestaDiv.innerHTML += "</tbody></table>";
-        } else {
-            tarifaRespuestaDiv.innerHTML = "No se encontraron tarifas para esta solicitud.";
-        }
+        // Mostrar la respuesta cruda en el HTML
+        tarifaRespuestaDiv.innerHTML = `<pre>${data}</pre>`;
     } catch (error) {
         console.error("Hubo un error al intentar obtener las tarifas.", error);
         tarifaRespuestaDiv.innerHTML = "Hubo un error al intentar obtener las tarifas.";
