@@ -99,7 +99,7 @@ $rate_request_data = [
     ]
 ];
 
-// Enviar la solicitud de tarifas a la API de FedEx
+// Enviar la solicitud de tarifas a la nueva API de FedEx
 $rate_url = "https://apis-sandbox.fedex.com/rate/v1/comprehensiverates/quotes";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $rate_url);
@@ -131,5 +131,4 @@ file_put_contents($log_file, $log_message, FILE_APPEND);
 
 // Devolver la respuesta de la API de tarifas
 echo $rate_response;
-
 ?>
