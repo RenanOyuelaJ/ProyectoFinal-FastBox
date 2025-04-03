@@ -13,14 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 // Obtenemos el número de rastreo de la URL
 $trackingNumber = isset($_GET['trackingNumber']) ? $_GET['trackingNumber'] : '';
 
-// Registro en log para verificar el número de rastreo recibido
-file_put_contents("log.txt", "Tracking Number: $trackingNumber\n", FILE_APPEND);
-
 if (empty($trackingNumber)) {
     echo json_encode(['error' => 'No se proporcionó un número de rastreo']);
     exit;
 }
 
+// Verificamos si el número de rastreo es válido (puedes agregar más validaciones si es necesario)
 if (!preg_match('/^\d{12}$/', $trackingNumber)) {
     echo json_encode(['error' => 'Número de rastreo no válido']);
     exit;
@@ -47,6 +45,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urle
 
 $auth_response = curl_exec($ch);
 
+// Verificar si hubo error en la autenticación
 if (curl_errno($ch)) {
     echo json_encode(["error" => "Error al obtener el token: " . curl_error($ch)]);
     exit();
@@ -54,6 +53,7 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
+// Decodificar la respuesta de autenticación
 $auth_response_data = json_decode($auth_response, true);
 if (!isset($auth_response_data['access_token'])) {
     echo json_encode(["error" => "No se pudo obtener el token"]);
@@ -87,6 +87,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 
 $tracking_response = curl_exec($ch);
 
+// Verificar si hubo error en la solicitud de rastreo
 if (curl_errno($ch)) {
     echo json_encode(["error" => "Error en la solicitud de rastreo: " . curl_error($ch)]);
     exit();
@@ -94,9 +95,7 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
-// Registrar la respuesta en un archivo log
-file_put_contents("fedex_response.log", "Response for $trackingNumber:\n" . $tracking_response . "\n\n", FILE_APPEND);
-
 // Devolver la respuesta de FedEx
 echo $tracking_response;
+
 ?>
