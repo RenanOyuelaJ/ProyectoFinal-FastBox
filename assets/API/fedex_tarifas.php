@@ -43,9 +43,9 @@ $rate_request_data = [
     "accountNumber" => [
         "value" => "740561073"
     ],
+    "rateRequestType" => ["ACCOUNT"],
     "rateRequestControlParameters" => [
-        "returnTransitTimes" => true,
-        "rateRequestType" => ["ACCOUNT"]  // 🔥 Agregamos esto
+        "returnTransitTimes" => true
     ],
     "requestedShipment" => [
         "shipper" => [
@@ -78,6 +78,7 @@ $rate_request_data = [
         ]
     ]
 ];
+
 
 // Enviar la solicitud de tarifas a la API de FedEx
 $rate_url = "https://apis-sandbox.fedex.com/rate/v1/comprehensiverates/quotes";
