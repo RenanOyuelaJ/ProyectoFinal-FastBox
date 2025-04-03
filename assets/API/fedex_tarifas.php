@@ -2,26 +2,29 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json");
 
-// Verificar si el método es OPTIONS (preflight)
+// Manejo de preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     http_response_code(200);
     exit();
 }
 
+// Obtener los datos enviados por el frontend
 $origenPostal = isset($_GET['origenPostal']) ? $_GET['origenPostal'] : '';
 $destinoPostal = isset($_GET['destinoPostal']) ? $_GET['destinoPostal'] : '';
 $peso = isset($_GET['peso']) ? $_GET['peso'] : '';
 
+// Validar los parámetros de entrada
 if (empty($origenPostal) || empty($destinoPostal) || empty($peso)) {
     echo json_encode(['error' => 'Faltan parámetros requeridos']);
     exit;
 }
 
-// Parámetros de autenticación
-$client_id = "l7753a7f01f8674b219da9ace51b892791";
-$client_secret = "e49a2d14836b418493661e6333b93f7f";
+// Parámetros de autenticación para obtener el token
+$client_id = "l7753a7f01f8674b219da9ace51b892791";  // Reemplaza con tu client_id
+$client_secret = "e49a2d14836b418493661e6333b93f7f";  // Reemplaza con tu client_secret
 $auth_url = 'https://apis-sandbox.fedex.com/oauth/token';
 
+// Obtener el token de FedEx
 $auth_data = [
     'grant_type' => 'client_credentials',
     'client_id' => $client_id,
@@ -36,27 +39,28 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($auth_data));
 curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-Type: application/x-www-form-urlencoded']);
 
 $auth_response = curl_exec($ch);
+
+// Verificar si hubo error en la autenticación
 if (curl_errno($ch)) {
-    error_log("Error al obtener el token: " . curl_error($ch));
-    echo json_encode(["error" => "Error al obtener el token"]);
+    echo json_encode(["error" => "Error al obtener el token: " . curl_error($ch)]);
     exit();
 }
 
 curl_close($ch);
 
+// Decodificar la respuesta de autenticación
 $auth_response_data = json_decode($auth_response, true);
 if (!isset($auth_response_data['access_token'])) {
-    error_log("No se pudo obtener el token: " . $auth_response);
     echo json_encode(["error" => "No se pudo obtener el token"]);
     exit();
 }
 
 $access_token = $auth_response_data['access_token'];
 
-// Solicitud de tarifas
+// Crear el payload para la solicitud de tarifas
 $rate_request_data = [
     "accountNumber" => [
-        "value" => "740561073"
+        "value" => "740561073"  // Reemplaza con tu número de cuenta de FedEx
     ],
     "requestedShipment" => [
         "shipper" => [
@@ -87,6 +91,7 @@ $rate_request_data = [
     ]
 ];
 
+// Enviar la solicitud de tarifas a la API de FedEx
 $rate_url = "https://apis-sandbox.fedex.com/rate/v1/rates/quotes";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $rate_url);
@@ -99,18 +104,21 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
 ]);
 
 $rate_response = curl_exec($ch);
+curl_close($ch);
+
+// Verificar si hubo error en la solicitud de tarifas
 if (curl_errno($ch)) {
-    error_log("Error en la solicitud de tarifas: " . curl_error($ch));
-    echo json_encode(["error" => "Error en la solicitud de tarifas"]);
+    echo json_encode(["error" => "Error en la solicitud de tarifas: " . curl_error($ch)]);
     exit();
 }
 
-curl_close($ch);
+// Crear o abrir el archivo de log
+$log_file = 'api_response_log.txt';
+$log_message = date('Y-m-d H:i:s') . " - Respuesta de la API: " . json_encode(json_decode($rate_response), JSON_PRETTY_PRINT) . "\n";
 
-// Registrar la respuesta de la API de tarifas
-error_log("Respuesta de la API de tarifas: " . $rate_response);
+// Guardar la respuesta en el archivo de log
+file_put_contents($log_file, $log_message, FILE_APPEND);
 
-// Decodificar y devolver la respuesta
-$rate_response_data = json_decode($rate_response, true);
-echo json_encode($rate_response_data);
+// Devolver la respuesta de FedEx
+echo $rate_response;
 ?>
