@@ -96,7 +96,14 @@ body{
     margin-top: 4.2%;
     background-position: center;
 }
-/*
+
+.img-size3{
+    background-image: url("/assets/media/contacto.jpg");
+    height: 400px;
+    margin-top: 4.2%;
+    background-position: center;
+}
+
 /*Enlaces rapidos de inicio*/
 .enlace-r {
     text-decoration: none;
