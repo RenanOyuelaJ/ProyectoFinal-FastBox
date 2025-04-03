@@ -87,7 +87,7 @@ body{
 
 .img-3{
     background-image: url("/assets/media/van.png");
-    height: 400px;
+   height: 600px;
 }
 
 /*Enlaces rapidos de inicio*/
@@ -120,4 +120,17 @@ body{
 .icon-button:focus {
     outline: none;
     box-shadow: none;
+}
+
+
+.img-size {
+    width: 100px;
+    display: block;
+    margin: 10px auto;
+}
+
+.card {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
