@@ -79,10 +79,6 @@ $rate_request_data = [
     ]
 ];
 
-// **Imprimir el contenido de $rate_request_data antes de enviarlo a la API**
-var_dump($rate_request_data);
-exit();  // Detener ejecución para verificar datos
-
 // Registrar lo que se está enviando exactamente
 file_put_contents("payload_log.json", json_encode($rate_request_data, JSON_PRETTY_PRINT));
 
@@ -97,12 +93,18 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Content-Type: application/json",
     "Authorization: Bearer $access_token"
 ]);
-curl_setopt($ch, CURLOPT_ENCODING, '');  // 🔥 Agregar esta línea para manejar respuestas comprimidas
+curl_setopt($ch, CURLOPT_ENCODING, ''); 
 
 $rate_response = curl_exec($ch);
 curl_close($ch);
 
-// **Imprimir la respuesta correctamente descomprimida**
+// Verificar si la respuesta contiene errores
+if (curl_errno($ch)) {
+    echo json_encode(["error" => "Error en la solicitud de tarifas: " . curl_error($ch)]);
+    exit();
+}
+
+// Imprimir la respuesta de la API
 echo "<pre>";
 print_r($rate_response);
 echo "</pre>";
