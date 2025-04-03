@@ -44,7 +44,8 @@ $rate_request_data = [
         "value" => "740561073"
     ],
     "rateRequestControlParameters" => [
-        "returnTransitTimes" => true
+        "returnTransitTimes" => true,
+        "rateRequestType" => ["ACCOUNT"]
     ],
     "requestedShipment" => [
         "shipper" => [
