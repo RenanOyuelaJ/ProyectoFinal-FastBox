@@ -123,4 +123,9 @@ curl_close($ch);
 
 // Devolver la respuesta de la API de tarifas
 echo $rate_response;
+
+// Imprimir la respuesta cruda para depuración
+echo "<pre>";
+print_r($response);
+echo "</pre>";
 ?>
