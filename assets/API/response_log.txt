@@ -1,0 +1,6 @@
+Fecha: 2025-04-03 07:59:10
+Respuesta de la API: {"transactionId": "2c241511-e250-42c1-ab07-26df6d07bd1d","errors":[{"code":"NOT.FOUND.ERROR","message":"The resource you requested is no longer available. Please modify your request and try again."}]}
+
+Fecha: 2025-04-03 07:59:20
+Respuesta de la API: {"transactionId": "7263dc0f-c41b-47b4-853e-87b14cc8813c","errors":[{"code":"NOT.FOUND.ERROR","message":"The resource you requested is no longer available. Please modify your request and try again."}]}
+
