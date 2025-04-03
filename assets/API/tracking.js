@@ -9,6 +9,8 @@ async function trackPackage() {
         return;
     }
 
+    console.log(`Número de seguimiento enviado: ${trackingNumber}`);
+
     try {
         const response = await fetch(`${apiUrl}?trackingNumber=${trackingNumber}`);
         const data = await response.json();
