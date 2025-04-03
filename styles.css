@@ -90,6 +90,13 @@ body{
    height: 600px;
 }
 
+.img-size2{
+    background-image: url("/assets/media/envios.jpg");
+    height: 500px;
+    margin-top: 4.2%;
+    background-position: center;
+}
+/*
 /*Enlaces rapidos de inicio*/
 .enlace-r {
     text-decoration: none;
@@ -134,3 +141,4 @@ body{
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
