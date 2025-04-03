@@ -100,8 +100,11 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
+// Limpiar posibles caracteres no deseados y asegurar que el log sea en formato texto
+$log_data = date('Y-m-d H:i:s') . " - Respuesta de la API:\n" . json_encode(json_decode($tracking_response), JSON_PRETTY_PRINT) . "\n\n";
+
 // Registrar la respuesta en un archivo de log
-file_put_contents('log.txt', date('Y-m-d H:i:s') . " - Respuesta de la API: " . $tracking_response . "\n", FILE_APPEND);
+file_put_contents('log.txt', $log_data, FILE_APPEND);
 
 // Devolver la respuesta de la API
 echo $tracking_response;
