@@ -21,6 +21,8 @@ $auth_data = [
 
 $ch = curl_init();
 
+var_dump($rate_request_data);
+exit();
 // Registrar lo que se está enviando exactamente
 file_put_contents("payload_log.json", json_encode($rate_request_data, JSON_PRETTY_PRINT));
 
