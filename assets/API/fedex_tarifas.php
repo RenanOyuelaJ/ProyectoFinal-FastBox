@@ -64,7 +64,7 @@ $rate_request_data = [
     ]
 ];
 
-$rate_url = "https://apis-sandbox.fedex.com/rate/v1/comprehensiverates/quotes";
+$rate_url = "https://apis-sandbox.fedex.com/rate/v1/rates/quotes";
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $rate_url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

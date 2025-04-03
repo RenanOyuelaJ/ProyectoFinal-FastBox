@@ -1,4 +1,4 @@
-const apiUrlTarifas = "https://tu-dominio.com/assets/API/fedex_tarifas.php";
+const apiUrlTarifas = "https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/fedex_tarifas.php";
 
 async function calcularTarifa() {
     const origenPostal = document.getElementById("origenPostal").value;
