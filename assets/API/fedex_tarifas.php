@@ -121,11 +121,15 @@ if (curl_errno($ch)) {
 
 curl_close($ch);
 
+// Guardar la respuesta en un archivo de log
+$log_file = 'response_log.txt';
+$log_message = "Fecha: " . date('Y-m-d H:i:s') . "\n";
+$log_message .= "Respuesta de la API: " . $rate_response . "\n\n";
+
+// Abrir archivo de log y escribir la respuesta
+file_put_contents($log_file, $log_message, FILE_APPEND);
+
 // Devolver la respuesta de la API de tarifas
 echo $rate_response;
 
-// Imprimir la respuesta cruda para depuración
-echo "<pre>";
-print_r($response);
-echo "</pre>";
 ?>
