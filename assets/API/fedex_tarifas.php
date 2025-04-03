@@ -43,7 +43,7 @@ $rate_request_data = [
     "accountNumber" => [
         "value" => "740561073"
     ],
-    "rateRequestType" => ["ACCOUNT"],
+    "rateRequestType" => ["LIST"],
     "rateRequestControlParameters" => [
         "returnTransitTimes" => true
     ],

@@ -1,1 +1,41 @@
-null
+{
+    "accountNumber": {
+        "value": "740561073"
+    },
+    "rateRequestType": [
+        "ACCOUNT"
+    ],
+    "rateRequestControlParameters": {
+        "returnTransitTimes": true
+    },
+    "requestedShipment": {
+        "shipper": {
+            "address": {
+                "postalCode": "10001",
+                "countryCode": "US"
+            }
+        },
+        "recipient": {
+            "address": {
+                "postalCode": "90001",
+                "countryCode": "US"
+            }
+        },
+        "pickupType": "DROPOFF_AT_FEDEX_LOCATION",
+        "shippingChargesPayment": {
+            "paymentType": "SENDER",
+            "payor": {
+                "accountNumber": "740561073",
+                "countryCode": "US"
+            }
+        },
+        "requestedPackageLineItems": [
+            {
+                "weight": {
+                    "units": "LB",
+                    "value": "5"
+                }
+            }
+        ]
+    }
+}
