@@ -22,8 +22,8 @@ if (empty($origenPostal) || empty($destinoPostal) || empty($peso)) {
 }
 
 // Parámetros de autenticación (cliente de la API de FedEx)
-$client_id = "l7753a7f01f8674b219da9ace51b892791";
-$client_secret = "e49a2d14836b418493661e6333b93f7f";
+$client_id = "l7753a7f01f8674b219da9ace51b892791";  // Reemplaza con tu Client ID
+$client_secret = "e49a2d14836b418493661e6333b93f7f";  // Reemplaza con tu Client Secret
 $auth_url = "https://apis-sandbox.fedex.com/oauth/token";  // URL de autenticación
 
 // Obtener el token de autenticación
@@ -114,9 +114,11 @@ if (curl_errno($ch)) {
     exit();
 }
 
-// Mostrar la respuesta de la API
-echo "<pre>";
-print_r(json_decode($rate_response, true));  // Mostrar la respuesta de la API en formato legible
-echo "</pre>";
-
+// Decodificar y devolver solo los datos relevantes
+$rate_response_data = json_decode($rate_response, true);
+if (isset($rate_response_data['output']['rateReplyDetails'])) {
+    echo json_encode($rate_response_data['output']['rateReplyDetails']);
+} else {
+    echo json_encode(["error" => "No se encontraron tarifas para esta solicitud"]);
+}
 ?>
