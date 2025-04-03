@@ -1,4 +1,4 @@
-const apiUrl = "https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/fedex.php";
+const apiUrl = "https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/fedex_tracking.php";
 
 async function trackPackage() {
     const trackingNumber = document.getElementById("trackingNumber").value;
@@ -8,6 +8,8 @@ async function trackPackage() {
         responseDiv.innerHTML = "Por favor ingresa un número de seguimiento.";
         return;
     }
+
+    console.log(`Número de seguimiento enviado: ${trackingNumber}`);
 
     try {
         const response = await fetch(`${apiUrl}?trackingNumber=${trackingNumber}`);
