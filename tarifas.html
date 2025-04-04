@@ -1,226 +1,268 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <link rel="icon" href="/assets/media/FASTBOX13.ico" type="image/x-icon">
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>FastBox - Tarifas</title>
-        <link rel="stylesheet" href="styles.css">
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/API/tarifas.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+<head>
+    <link rel="icon" href="/assets/media/FASTBOX13.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastBox - Tarifas</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/API/tarifas.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-                padding: 20px;
-                background-color: #f4f4f4;
-            }
-            header {
-                text-align: center;
-                padding: 20px;
-                background-color: #092051;
-                color: white;
-                border-radius: 8px;
-            }
-            section {
-                background: white;
-                padding: 20px;
-                margin-top: 20px;
-                border-radius: 8px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 10px;
-            }
-            th, td {
-                border: 1px solid #ddd;
-                padding: 10px;
-                text-align: center;
-            }
-            th {
-                background-color: #092051;
-                color: white;
-            }
-            button {
-                background-color: #092051;
-                color: white;
-                padding: 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
-            }
-            button:hover {
-                background-color: #061538;
-            }
-        </style>
-    </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #092051;
+            color: white;
+            border-radius: 8px;
+            margin-top: 45px;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #092051;
+            color: white;
+        }
+        button {
+            background-color: #092051;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #061538;
+        }
+    </style>
+</head>
 
-    <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
-            <div class="container-fluid" style="padding-top: 3px;border-bottom-width: 3px;padding-bottom: 3px;">
-                
-                <a class="navbar-brand" href="inicio.html">
-                    <img src="/assets/media/FASTBOX13.ico" alt="FastBox" width="57" height="59.94">
-                </a>
-                <a class="navbar-brand" href="inicio.html" style="
-                padding-top: 2px;
-                padding-bottom: 2px;">FastBox</a>
-                    
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark"> 
-                    <span class="navbar-toggler-icon"></span>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
+        <div class="container-fluid" style="padding-top: 3px;border-bottom-width: 3px;padding-bottom: 3px;">
+            <a class="navbar-brand" href="inicio.html">
+                <img src="/assets/media/FASTBOX13.ico" alt="FastBox" width="57" height="59.94">
+            </a>
+            <a class="navbar-brand" href="inicio.html" style="padding-top: 2px;padding-bottom: 2px;">FastBox</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" data-bs-theme="dark">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" style="justify-content: center;" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: white;" aria-current="page" href="inicio.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" style="color: white;" aria-current="page" href="quienes-somos.html">Quienes Somos</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Envío</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="rastreo.html">Rastrea tu paquete</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="tarifas.html">Tarifas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="rutas.html">Rutas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Soporte</a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="reporte-perdida.html">Reporte de Pérdida</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="faq.html">Preguntas Frecuentes</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <button class="icon-button" data-bs-toggle="modal" data-bs-target="#loginModal">
+                    <i class="bi bi-person-workspace"></i>
                 </button>
-
-                <div class="collapse navbar-collapse" style="justify-content: center;" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link active" style="color: white;" aria-current="page" href="inicio.html">Inicio</a>
-                        <li class="nav-item">
-                            <a class="nav-link active" style="color: white;" aria-current="page" href="quienes-somos.html">Quienes Somos</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Envío
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="rastreo.html">Rastrea tu paquete</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="tarifas.html">Tarifas</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="rutas.html">Rutas</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" style="color: white;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Soporte
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="reporte-perdida.html">Reporte de Pérdida</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="faq.html">Preguntas Frecuentes</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <button class="icon-button" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        <i class="bi bi-person-workspace"></i>
-                    </button>
-                    
-                </div>
-                
             </div>
-        </nav>
+        </div>
+    </nav>
 
-        <!-- Modal de Inicio de Sesión -->
-        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title col" id="loginModalLabel" style="display: block;">Iniciar Sesión</h5>
-                        <div style="display: block;"><img src="/assets/media/FASTBOX.png" alt="FastBox" style="width: 100px;"></div>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Correo Electrónico</label>
-                                <input type="email" class="form-control" id="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                            <div class="row" style="margin-top: 15px;">
-                                <div class="col-4"></div>
-                                <a class="col-4" href="" style="font-size: x-small; text-align: center; align-items: center;">Recuperar Contraseña</a>
-                                <div class="col-4"></div>
-                            </div>    
-                        </form>
-                    </div>
+    <!-- Modal de Inicio de Sesión -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title col" id="loginModalLabel" style="display: block;">Iniciar Sesión</h5>
+                    <div style="display: block;"><img src="/assets/media/FASTBOX.png" alt="FastBox" style="width: 100px;"></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo Electrónico</label>
+                            <input type="email" class="form-control" id="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+                        <div class="row" style="margin-top: 15px;">
+                            <div class="col-4"></div>
+                            <a class="col-4" href="" style="font-size: x-small; text-align: center; align-items: center;">Recuperar Contraseña</a>
+                            <div class="col-4"></div>
+                        </div>    
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <header>
-            <h1>Tarifas de Envío</h1>
-            <p>Consulta nuestras tarifas para envíos nacionales e internacionales.</p>
-        </header>
+    <header>
+        <h1>Tarifas de Envío</h1>
+        <p>Consulta nuestras tarifas para envíos nacionales e internacionales.</p>
+    </header>
 
-        <section>
-            <div>
-                <h2>Calculadora de Tarifas FedEx</h2>
-                <label for="origenPostal">Código Postal de Origen:</label>
-                <input type="text" id="origenPostal" required>
-                
-                <label for="destinoPostal">Código Postal de Destino:</label>
-                <input type="text" id="destinoPostal" required>
-                
-                <label for="peso">Peso del Paquete (lbs):</label>
-                <input type="number" id="peso" required>
-                
-                <button type="button" class="btn btn-primary" onclick="calcularTarifa()">Calcular Tarifa</button>
-                
-                <div id="tarifaRespuesta"></div>
-            </div> 
-        </section>
+    <section>
+        <h2>Calculadora de Tarifas FastBox</h2>
+        
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="origenPostal" class="form-label">Código Postal de Origen:</label>
+                <input type="text" id="origenPostal" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="destinoPostal" class="form-label">Código Postal de Destino:</label>
+                <input type="text" id="destinoPostal" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="peso" class="form-label">Peso del Paquete (lbs):</label>
+                <input type="number" id="peso" class="form-control" required>
+            </div>
+        </div>
+        
+        <!-- Botón alineado a la derecha -->
+        <div class="text-end">
+            <button type="button" style="width: 32%;" class="btn btn-primary" onclick="calcularTarifa()">Calcular Tarifa</button>
+        </div>
+    
+        <!-- Sección de resultados -->
+        <div id="tarifasResults" class="mt-4 p-3 border rounded bg-light" style="display: none; max-width: 500px;">
+            <h4 class="text-secondary">Cálculo de Tarifa:</h4>
+            <div id="tarifas_result"></div> 
+        </div>
+    
+        <!-- Mensaje de error -->
+        <div id="error-message" class="text-danger" style="display: none; margin-top: 10px;">
+            <p>Por favor, completa todos los campos antes de calcular.</p>
+        </div>
+    </section>
 
-        <section>
-            <h2>Tarifas Estándar</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Servicio</th>
-                        <th>Tiempo de Entrega</th>
-                        <th>Tarifa Base</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Envío Nacional Exprés</td>
-                        <td>24 - 48 horas</td>
-                        <td>Desde $10.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío Nacional Económico</td>
-                        <td>3 - 5 días</td>
-                        <td>Desde $7.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío Nacional Premium</td>
-                        <td>12 - 24 horas</td>
-                        <td>Desde $15.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío Internacional Prioritario</td>
-                        <td>2 - 5 días</td>
-                        <td>Desde $25.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío Internacional Económico</td>
-                        <td>5 - 10 días</td>
-                        <td>Desde $20.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío Internacional Exprés</td>
-                        <td>24 - 72 horas</td>
-                        <td>Desde $35.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío Internacional Super Económico</td>
-                        <td>10 - 20 días</td>
-                        <td>Desde $15.00</td>
-                    </tr>
-                    <tr>
-                        <td>Envío con Seguro</td>
-                        <td>Depende del servicio</td>
-                        <td>Tarifa adicional de $5.00</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </body>
+    <section>
+        <h2>Tarifas Estándar</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Tiempo de Entrega</th>
+                    <th>Tarifa Base</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Envío Nacional Exprés</td>
+                    <td>24 - 48 horas</td>
+                    <td>Desde $10.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Nacional Económico</td>
+                    <td>3 - 5 días</td>
+                    <td>Desde $7.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Nacional Premium</td>
+                    <td>12 - 24 horas</td>
+                    <td>Desde $15.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Internacional Prioritario</td>
+                    <td>2 - 5 días</td>
+                    <td>Desde $25.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Internacional Económico</td>
+                    <td>5 - 10 días</td>
+                    <td>Desde $20.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Internacional Exprés</td>
+                    <td>24 - 72 horas</td>
+                    <td>Desde $35.00</td>
+                </tr>
+                <tr>
+                    <td>Envío Internacional Super Económico</td>
+                    <td>10 - 20 días</td>
+                    <td>Desde $15.00</td>
+                </tr>
+                <tr>
+                    <td>Envío con Seguro</td>
+                    <td>Depende del servicio</td>
+                    <td>Tarifa adicional de $5.00</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script>
+        function calcularTarifa() {
+    // Obtener los valores de los inputs
+    const origenPostal = document.getElementById("origenPostal").value;
+    const destinoPostal = document.getElementById("destinoPostal").value;
+    const peso = document.getElementById("peso").value;
+
+    // Validación de campos vacíos
+    if (!origenPostal || !destinoPostal || !peso) {
+        document.getElementById("error-message").style.display = "block";  // Mostrar mensaje de error
+        document.getElementById("tarifasResults").style.display = "none";  // Ocultar resultados
+        return;  // Salir de la función si algún campo está vacío
+    }
+
+    // Ocultar mensaje de error si los campos están completos
+    document.getElementById("error-message").style.display = "none";
+
+    // Generar un valor aleatorio entre 20 y 300
+    const tarifa = (Math.random() * (300 - 20) + 20).toFixed(2);
+
+    // Mostrar el resultado en el div de tarifas con tamaño de letra mayor
+    const tarifasResultDiv = document.getElementById("tarifasResults");
+    const tarifasResultContent = `
+        <p style="font-size: 2em;">Tarifa Estimada: <strong>$${tarifa}</strong> USD</p>
+    `;
+    document.getElementById("tarifas_result").innerHTML = tarifasResultContent;
+
+    // Mostrar la sección de resultados
+    tarifasResultDiv.style.display = "block";
+}
+
+    </script>
+
+</body>
 </html>

@@ -4,11 +4,11 @@ async function calcularTarifa() {
     const origenPostal = document.getElementById("origenPostal").value;
     const destinoPostal = document.getElementById("destinoPostal").value;
     const peso = document.getElementById("peso").value;
-    const tarifaRespuestaDiv = document.getElementById("tarifaRespuesta");
+    const responseDiv = document.getElementById("response");
 
     // Validar que todos los campos están llenos
     if (!origenPostal || !destinoPostal || !peso) {
-        tarifaRespuestaDiv.innerHTML = "Por favor, complete todos los campos.";
+        responseDiv.innerHTML = "Por favor, complete todos los campos.";
         return;
     }
 
@@ -24,15 +24,34 @@ async function calcularTarifa() {
         const data = await response.json();
         console.log("Respuesta de la API:", data);  // Mostrar la respuesta procesada
 
-        console.log("Asignando contenido a tarifaRespuestaDiv");
-        tarifaRespuestaDiv.innerHTML = "<pre>{ \"respuesta\": \"esto es una prueba\" }</pre>";
-        console.log("Contenido asignado:", tarifaRespuestaDiv.innerHTML);
+        // Llamar a la función para mostrar las tarifas en HTML
+        mostrarTarifas(data);
 
-        // Mostrar la respuesta completa en formato JSON en el HTML
-        //tarifaRespuestaDiv.innerHTML = "<pre>" + JSON.stringify(data, null, 2) + "</pre>";
-        
     } catch (error) {
         console.error("Hubo un error al intentar obtener las tarifas.", error);
-        tarifaRespuestaDiv.innerHTML = `Hubo un error al intentar obtener las tarifas: ${error.message}`;
+        responseDiv.innerHTML = `Hubo un error al intentar obtener las tarifas: ${error.message}`;
     }
+}
+
+function mostrarTarifas(response) {
+    const tarifasDiv = document.getElementById("tarifas_result");
+    
+    // Verificar si hay datos de tarifas en la respuesta
+    if (!response.output || !response.output.rateReplyDetails) {
+        tarifasDiv.innerHTML = "<p>No se encontraron tarifas disponibles.</p>";
+        return;
+    }
+
+    const tarifas = response.output.rateReplyDetails;
+    let htmlContent = "<h3>Opciones de Envío:</h3><ul>";
+
+    // Recorrer los resultados y extraer datos clave
+    tarifas.forEach((tarifa) => {
+        const servicio = tarifa.serviceName || "Servicio desconocido";
+        const precio = tarifa.ratedShipmentDetails?.[0]?.totalNetCharge?.amount || "No disponible";
+        htmlContent += `<li><strong>${servicio}:</strong> $${precio} USD</li>`;
+    });
+
+    htmlContent += "</ul>";
+    tarifasDiv.innerHTML = htmlContent;
 }
