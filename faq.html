@@ -13,7 +13,7 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" style="padding-top: 0;;">
         <div class="container-fluid" style="padding-top: 3px;border-bottom-width: 3px;padding-bottom: 3px;">
             
             <a class="navbar-brand" href="inicio.html">
@@ -97,37 +97,165 @@
         </div>
     </div>
 
-    <header>
-        <h1>Preguntas Frecuentes</h1>
-    </header>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(247, 247, 247);
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            margin-top: 75px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex-grow: 1;
+        }
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px; 
+        }
+        .form-control {
+            margin-bottom: 20px;
+        }
+        .accordion-button {
+            font-weight: bold;
+        }
+        footer {
+            background-color: rgba(243, 243, 243, 0.637);
+            padding: 20px;
+            text-align: center;
+            margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="faq-header">
+            <h1 class="mb-3">Preguntas Frecuentes</h1>
+            <p>Consulta las preguntas más comunes sobre nuestros servicios.</p>
+            <input type="text" class="form-control" placeholder="🔍 Realiza tu pregunta...">
+        </header>
+        
+        <section>
+            <h2 class="mb-3">Preguntas y Respuestas</h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            ¿Cuánto tiempo tarda un envío?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Depende del tipo de envío. La entrega estándar toma de 3 a 5 días hábiles, mientras que la exprés puede tardar entre 24 y 48 horas.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            ¿Cómo puedo rastrear mi paquete?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Puedes ingresar el número de rastreo en nuestra sección de <a href="rastreo.html">Rastreo</a> para conocer la ubicación de tu paquete en tiempo real.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            ¿Qué artículos están prohibidos en los envíos?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            No aceptamos artículos peligrosos, explosivos, inflamables, dinero en efectivo ni sustancias ilegales. Consulta nuestra lista completa en términos y condiciones.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            ¿Ofrecen seguro para los envíos?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sí, contamos con opciones de seguro para proteger tu paquete en caso de pérdida o daño.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            ¿Cómo puedo contactar al servicio de atención al cliente?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Puedes comunicarte con nuestro equipo 24/7 a través de nuestro <a href="soporte.html">centro de soporte</a> o llamando a nuestra línea directa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
     
-    <section>
-        <p>Consulta las preguntas más comunes sobre nuestros servicios.</p>
-        <input type="text" placeholder="Realiza tu pregunta Frecuentes">
-    </section>
-    
-    <section>
-        <h2>Preguntas y Respuestas</h2>
-        <details>
-            <summary>¿Cuánto tiempo tarda un envío?</summary>
-            <p>Depende del tipo de envío. La entrega estándar toma de 3 a 5 días hábiles, mientras que la exprés puede tardar entre 24 y 48 horas.</p>
-        </details>
-        <details>
-            <summary>¿Cómo puedo rastrear mi paquete?</summary>
-            <p>Puedes ingresar el número de rastreo en nuestra sección de <a href="rastreo.html">Rastreo</a> para conocer la ubicación de tu paquete en tiempo real.</p>
-        </details>
-        <details>
-            <summary>¿Qué artículos están prohibidos en los envíos?</summary>
-            <p>No aceptamos artículos peligrosos, explosivos, inflamables, dinero en efectivo ni sustancias ilegales. Consulta nuestra lista completa en términos y condiciones.</p>
-        </details>
-        <details>
-            <summary>¿Ofrecen seguro para los envíos?</summary>
-            <p>Sí, contamos con opciones de seguro para proteger tu paquete en caso de pérdida o daño.</p>
-        </details>
-        <details>
-            <summary>¿Cómo puedo contactar al servicio de atención al cliente?</summary>
-            <p>Puedes comunicarte con nuestro equipo 24/7 a través de nuestro <a href="soporte.html">centro de soporte</a> o llamando a nuestra línea directa.</p>
-        </details>
-    </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+</html>
+
+<footer style="background-color: rgba(243, 243, 243, 0.637)">
+    <div class="row" style="padding-left: 1%; padding-right: 1%; padding-top: 2%; margin-top:0; margin-bottom: 10px; margin-left: 0; margin-right: 0;">
+        <div class="col-2"><img src="/assets/media/FASTBOXfooter.png" alt="FastBox" width="200rem" ></div>
+        <div class="col-2">
+            <div class="enlaces-rapidos row">
+                <h4 style="text-align: left;">Enlaces Rapidos</h4>
+                <a class="enlace-r" style="margin-top: 2%; text-align: left;" href="tarifas.html">Revisa las diversas tarifas</a>
+                <a class="enlace-r" style="margin-top: 2%; text-align: left;" href="reporte-perdida.html">Reporta alguna perdida</a>
+                <a class="enlace-r" href="faq.html" style="text-align: left; margin-top: 2%;">Preguntas frecuentes</a>
+                <a class="enlace-r" href="faq.html" style="text-align: left; margin-top: 2%;">Rutas predefinidas</a>
+            </div>
+        </div>    
+
+        <div class="col-6">
+            <ul class="row align-items-start" style="list-style: none; padding-left: 0;"> 
+                <li class="col footer">Conocimiento Sobre Fraudes</li>
+                <li class="col footer">Aviso Legal</li>
+                <li class="col footer">Condiciones de Uso</li>
+                <li class="col footer">Aviso de Privacidad</li>
+                <br>
+                <li class="col footer">Resolución de Disputas</li>
+                <li class="col footer">Información Adicional</li>
+                <li class="col footer">Ajustes de Cookies</li>
+            </ul>
+        </div>
+        <div class="col-2">
+            <h7><center>¡Síguenos en nuestras redes sociales!:</center></h7>
+            <br>
+            <ul style="padding: 0;"><center>
+                <img src="/assets/icons/instagram.png" alt="Instagram">
+                <img src="/assets/icons/facebook.png" alt="Facebook">
+                <img src="/assets/icons/linkedin.png" alt="LinkedIN">
+                <img src="/assets/icons/whatsapp.png" alt="Whatsapp"></center>
+            </ul>
+        </div>
+        <center>  2025 &copy; todos los derechos reservados </center>
+    </div>
+</footer>
 </html>
