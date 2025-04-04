@@ -1,4 +1,4 @@
-const apiUrl = "https://crispy-guacamole-qg9x54x6wxj29jj4-8000.app.github.dev/fedex_tracking.php";
+const apiUrl = "https://verbose-space-journey-7vrwvpv7qjg72rwqp-8000.app.github.dev/fedex_tracking.php";
 
 async function trackPackage() {
     const trackingNumber = document.getElementById("trackingNumber").value;
