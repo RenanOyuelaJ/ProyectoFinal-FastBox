@@ -1,4 +1,4 @@
-const apiUrl = "https://verbose-space-journey-7vrwvpv7qjg72rwqp-8000.app.github.dev/fedex_tracking.php";
+const apiUrl = "http://fastbox.infinityfreeapp.com/assets/API/fedex_tracking.php";
 
 async function trackPackage() {
     const trackingNumber = document.getElementById("trackingNumber").value;
