@@ -1,4 +1,4 @@
-const apiUrl = "http://fastbox.infinityfreeapp.com/assets/API/fedex_tracking.php";
+const apiUrl = "assets/API/proxy_tracking.php";
 
 async function trackPackage() {
     const trackingNumber = document.getElementById("trackingNumber").value;
