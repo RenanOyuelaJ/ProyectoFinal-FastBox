@@ -1,0 +1,20 @@
+# Archivos y carpetas del control de versiones
+.git
+.gitignore
+
+# Archivos de configuración locales
+.vscode
+.env
+.DS_Store
+*.log
+
+# Dependencias innecesarias (por si en algún punto trabajás con Node)
+node_modules
+
+# Archivos de documentación
+README.md
+LICENSE
+
+# Archivos de despliegue
+Dockerfile
+.dockerignore
