@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/API/tarifas.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <style>
@@ -236,35 +235,33 @@
 
     <script>
         function calcularTarifa() {
-    // Obtener los valores de los inputs
-    const origenPostal = document.getElementById("origenPostal").value;
-    const destinoPostal = document.getElementById("destinoPostal").value;
-    const peso = document.getElementById("peso").value;
+            const origenPostal = document.getElementById("origenPostal").value;
+            const destinoPostal = document.getElementById("destinoPostal").value;
+            const pesoLb = parseFloat(document.getElementById("peso").value); 
 
-    // Validación de campos vacíos
-    if (!origenPostal || !destinoPostal || !peso) {
-        document.getElementById("error-message").style.display = "block";  // Mostrar mensaje de error
-        document.getElementById("tarifasResults").style.display = "none";  // Ocultar resultados
-        return;  // Salir de la función si algún campo está vacío
-    }
+            if (!origenPostal || !destinoPostal || isNaN(pesoLb)) {
+                document.getElementById("error-message").style.display = "block";
+                document.getElementById("tarifasResults").style.display = "none";
+                return;
+            }
 
-    // Ocultar mensaje de error si los campos están completos
-    document.getElementById("error-message").style.display = "none";
+            document.getElementById("error-message").style.display = "none";
 
-    // Generar un valor aleatorio entre 20 y 300
-    const tarifa = (Math.random() * (300 - 20) + 20).toFixed(2);
+            const tarifaBase = 8;              // tarifa mínima fija
+            const costoPorLibra = 3.5;         // costo por libra
+            const cargoVariable = Math.random() * 5;  // cargo adicional aleatorio (entre 0 y 5 USD)
 
-    // Mostrar el resultado en el div de tarifas con tamaño de letra mayor
-    const tarifasResultDiv = document.getElementById("tarifasResults");
-    const tarifasResultContent = `
-        <p style="font-size: 2em;">Tarifa Estimada: <strong>$${tarifa}</strong> USD</p>
-    `;
-    document.getElementById("tarifas_result").innerHTML = tarifasResultContent;
+            // Cálculo de tarifa total
+            const tarifa = (tarifaBase + (pesoLb * costoPorLibra) + cargoVariable).toFixed(2);
 
-    // Mostrar la sección de resultados
-    tarifasResultDiv.style.display = "block";
-}
+            const tarifasResultDiv = document.getElementById("tarifasResults");
+            const tarifasResultContent = `
+                <p style="font-size: 2em;">Tarifa Estimada: <strong>$${tarifa}</strong> USD</p>
+            `;
+            document.getElementById("tarifas_result").innerHTML = tarifasResultContent;
 
+            tarifasResultDiv.style.display = "block";
+        }
     </script>
 
 </body>
